@@ -1,0 +1,969 @@
+Comentarios en python:
+una linea es #
+varias lineas es """ ... """
+
+nota: Python interpreta los espacios y los tab de manera diferente e independiente, y es respetado e interpretado los niveles de indentacion. El comando "is" es para verificar si ambos objetos apuntan a la misma direccio de memoria.
+
+valores especiales en string
+	\n -> salto de linea
+	\t -> tabular
+	\r -> elimina todo lo q antecede
+
+Para ejecutar comandos bash en Python
+	os.system("comando a ejecutar")
+
+Para obtener la fecha y hora actual
+	from datetime import datetime
+	ahora = datetime.now()
+	
+	otra variante:
+	import datetime
+	ahora = datetime.datetime.now()
+	
+	* para acceder solo a la hora se utiliza ahora.date() y para acceder solo a la hora se utiliza ahora.time(). Para acceder a cada elemento por separado es de la siguiente manera: ahora.year, ahora.month, ahora.day, ahora.hour, ahora.minute, ahora.second, ahora.microsecond
+
+Funciones embebidas en Python:
+	- map(funcion, secuencia) -> es una funcion que permite iterar una funcion sobre alguna secuencia iterable. A partir de python 3, el resultado debe ser convertido a una lista.
+	ejmeplo:
+	def cubo(numero):
+    	return pow(numero, 3)
+	numeros = [2, 3, 4, 5, 6]
+	list(map(cubo, numeros)) -> [8, 27, 64, 125, 216]
+
+	- reduce(funcion, secuencia) -> Reduce la secuencia iterable a un único valor, en funcion de la funcion definida. Necesita importar functools
+	ejemplo #1:
+	def compara(x, y):
+    	if x > y:
+    	    return x
+    	else:
+    	    return y
+
+	lst =[47,11,42,13]
+	functools.reduce(compara, lst) -> 47
+ 
+	ejemplo #2: usando lambda (en este caso lo q hace es sumar el primer par y el resultado lo suma con el siguiente)
+	lst = [47, 11, 42, 13]
+	functools.reduce(lambda x,y: x+y,lst) -> 113
+	
+	- filter(funcion, secuencia) -> permite filtrar a conveniecia una secuencia iterable, la funcion pasada como parametro tiene q retornar un boolean
+	ejemplo #1:
+	def pares(num):
+    if num % 2 == 0:
+        return True
+
+	lista = [1, 4, 9, 16, 25]
+	list(filter(pares, lista)) -> [4, 16]
+	
+	ejemplo #2:
+	list(filter(lambda x: x%2==0, lista1)) -> [4, 16]
+
+	- enumerate() -> permite contar los elementos de una lista al mismo tiempo que la recorre, devolviendo una tupla. Si se quiere acceder a cada uno de los elementos de la tupla por separado, se colocan dos variables como iterador en el for, separadas por coma (for k,h in enumerate(lst)), donde k es el index y h es el elemento de la lista.
+	ejemplo:
+	lst = ['a','b','c']
+
+	for number in enumerate(lst):
+    	print(number)
+	salida: (0, 'a')  (1, 'b')  (2, 'c')
+	
+	- zip(list1, list2) -> Crea una lista de tuplas de los elementos de las listas pasadas por parametro, segun su indice. Ejemplo: [(list1[0], list2[0]), (...), (list1[n], list2[n])]
+	ejemplo:
+	x = [1,2,3]
+	y = [4,5,6]
+	
+	zip(x, y) -> [(1, 4),(2, 5),(3, 6)]
+	
+	- all() & any() -> permite verificar convenientemente la correspondencia boolean en un iterable. Es decir si todos son boolean o no. En el caso de any() retorna verdadero cuando por lo menos hay un boolean.
+	- len(string) -> devuelve la longitud de una cadena
+	
+	- isinstance(object, classinfo) -> comprueba si el objeto (primer argumento) es una instancia o subclase de classinfo (segundo argumento). Devuelve True si el object es una instancia o subclase de una clase, de lo contrario devuelve False. Esta funcion se puede utilizar para comprobar el tipo de dato de una variable.
+		object: objeto a comprobar
+		classinfo: clase, subclase, tipo de dato, etc...
+		ejemplo: isinstance("hello", str); isinstance([], list)
+	
+	tips de python shell
+    - dir(str) -> devuelve los metodos o funciones de una clase
+	- dir(__builtins__) -> devuelve las funciones basicas o incuidas en python por defecto.
+	- help(str.upper) -> para obtener aydua de una funcion.
+	- globals() -> para imprimir todas las variables globales
+	- locals() -> para imprimir todas las variables locals.
+	- El uso del signo ? en Jupyter muestra la documentacion de la funcion. Ejemplo: print?
+	- Los decoradores proporcionan una forma de modificar funciones utilizando otras funciones. Esto es ideal cuando necesita ampliar la funcionalidad de las funciones que no desea modificar.
+
+------------------------------------------------------------------------------------------------------
+para convertir a tipos de dato (casting):
+	- int() -> enteros
+	- str() -> sting
+	- bool() -> boolean
+	- float() -> coma flotante
+
+Operadores lógicos
+	- and
+	- or
+	- not
+	- ! negacion
+	
+Operadores de comparacion
+	- == igualdad
+	- != diferente
+	- >	mayor que
+	- >= mayor o igual que
+	- < menor que
+	- <= menor o igual que
+
+Operadores aritmeticos
+ 	- suma [+]
+ 	- restta [-]
+ 	- multiplicacion [*]
+ 	- potencia [**]
+ 	- potencia [pow(base, exp)]
+ 	- division [/]
+	- division entera [//]
+	- division modular [%]
+	- La funcion integrada divmod(x, y) devuelve una tupla formada por el cociente y el resto de la divión de x entre y.
+	- operador @ funciona sobre vectores, o combinacion de vectores con listas (no funciona con listas). Colocando los vectores uno debajo del otro, realiza la multiplicacion de cada columna y al final suma todos los elementos del vector resultante. ejemplo
+	1, 2, 3
+	3, 6, 9
+	-------
+	3, 12, 27 = (48)
+
+Lambda es una funcion para crear funciones temporales en una sola linea de codigo
+	- lambda parametro: cuerpo de la funcion, lo q devuelve algo.
+	ejemplo:
+	square = lambda num: num**2
+	square(4) -> 16
+
+------------------------------------------------------------------------------------------------------
+Trabajo con Strings
+	funcion center(arg1, arg2) -> centra el texto al imprimirlo, arg1 determina la cantidad que desea centrar y arg2(que es opcional) es para colocar el caracter que desea imprimir, si no coloca ninguno usa espacios.
+	string.isalpha() -> devuelve true si solo son letras
+	string.isalnum() -> devuelve true si solo son letras y numeros
+  string.istitle() -> devuelve true si en la cadena cada palabra separada por espacios comienza con mayuscula, es decir Capitalize.
+  string.isdigit() -> devuelve true si todos son numeros
+  string.islower() -> devuelve true si todo esta en minuscula
+  string.isupper() -> devuelve true si todo esta en mayuscula
+  string.startswith('arg') -> devuelve true si la cadena comienza con el 'arg'. Esta funcion es Case-Sensitive.
+  string.endswith('arg') -> devuelve true si la cadena termina con el 'arg'. Esta funcion es Case-Sensitive.
+  string.upper() -> convierte toda la cadena en mayuscula
+  string.lower() -> convierte toda la cadena en minuscula
+  string.capitalize() -> convierte en mayuscula solo la primera letra de la cadena
+  string.title() -> convierte en mayuscula la primera letra de cada palabra en la cadena
+  string.swapcase() -> intercambia las letras mayusculas por minusculas y viceversa
+  string.strip() -> elimina los espacios en blanco al inicio y al final de la cadena
+	string.count("arg") -> cuenta la cantidad de ocurrencias de "arg" que existen en la cadena.
+	string.replace("caracter existente","caracter para sustituir") -> remplaza un pedazo de string por otro.
+	string.join(arg) -> une, fusiona el arg con la cadena anterior
+	string.find("element") -> devuelve la posicion dentro de la cadena de la primera ocurrencia encontrada. Devuelve -1 para indicar q no existe en la cadena.
+	string.ord("caracter") -> devuelve el codigo ascii de el caracter
+	string.chr(ASCII-CODE) -> imprime un caracter a partir de su propio codigo ascii
+	string.split("caracter") -> Convierte la cadena en una lista de strings divido por el caracter pasado por parametro, pero no incluye el caracter. En el caso que no se pase ningun argumento, divide por los espacios (predeterminado)
+	string.partition("caracter") -> realiza la misma operacion que la funcion split("_"), pero la funcion particion() incluye el caracter separador en la salida, split no.
+    * sublcadena de una cadena cadena[indexInicial:indexFinal]
+	Nota: El simbolo de (+) solo puedes concatenar strings, si quieres concatenar strings y variables, tienen q usar (,) coma.
+
+Trabajo con metodos de python para numeros:
+	hex(123) -> devuevle e equivalente en hexadecimal
+	bin(123) -> devuevle e equivalente en binario
+
+Funcion print(): documentacion -> https://pyformat.info/
+    con la funcion print() se puede formatear textos a la hora de imprimir. Utilizando %s dentro del texo convertimos el valor de la variable en strings, tambien se puede usar la opcion %f para imprimr float y especificamos cuantos lugares después de la coma podemo colocar.
+    *# ejemplo %s #*
+    text = "string"
+    print("Esto es un %s" %(text))
+    *# ejemplo %f #*
+    num = 142.3333333
+    print("Esto es un %1.2f" %(num)) -> en este caso va a colocar 2 elementos después de la coma, y el numero de alante indica los espacios entre la cadena y el string
+    tambien se puede usar la funciona format() para imprimir variables en la cadenas, ejemplo:
+    print('Esto es un ejemplo valores = {} y {} unidades'.format(35, 1))
+    
+    Un metodo similar a la funcion format() es el uso de %  print("%s: %s" %(k, v))    
+    
+	Otra forma de imprimr variables dentro de los strings a partir de python 3.6:
+	num = 123	
+	print(f"Estro es otro texto con variables{num}")
+
+------------------------------------------------------------------------------------------------------
+Estructura de la Sentencia If:
+if <condicion>:
+	bloque de codigos
+elif <condicion>:
+	bloque de codigo
+else:
+	bloque de codigo
+
+Estructura de ciclos While:
+while <condicion>:
+	bloque de codigo
+
+tambien se puede combinar con un else
+while <condicion>:
+    bloque de codigo
+else:
+    otro bloque
+
+Estructura de ciclos for:
+for x in nombre_lista:
+	bloque de codigos
+	
+tambien se puede combinar con else:
+for x in nombre_lista:
+	bloque de codigos
+else:
+
+Estructura de Switch
+
+match <condicion>:
+	case 1:
+	case 2:
+	case N:
+	case _: -> este case es el ultimo y es generico, se usa para definir las cosas que no está definido en los anteriores.
+
+
+Funcion range() de python -> es para generar rangos de elementos, numeros
+ejemplo:
+	- range(fin) -> va de cero a el valor pasado por parametro.
+	- range(inicio, fin) -> va desde el elemento inicio hasta el elemento fin. En este caso incluye el inicio pero no incluye el final
+	- range(inicio, fin, paso) -> similar a la de arriba pero controlando el paso con que recorro la lista. Si queremos recorrer el range en orden inverso el paso es un valor negativo e inicio tiene que ser mayor que fin.
+
+Estructura de las funciones
+def nombre_funcion(<parametros>):
+	bloque de codigo
+nota, los parametros de una funcion pueden tener valores predefinidos, que seran utilizados en caso que no se pasen.
+def nombre_funcion(param1, param2, param3=23):
+	bloque de codigo
+
+Argumentos:
+	cuando se usan algumentos en la forma de keywords no importa el orden en que se pasen, Ejemplo de keywords (k=3).
+	*args -> parametro que se usa para un numero variable de argumentos en la definicion de una funcion. Si se usa con parametros definidos, esta opcion se coloca de ultima
+	**kwargs -> parametro que se usa para un numero variable de keywords argumentos en la definicion de una funcion.
+
+------------------------------------------------------------------------------------------------------
+Utilizando los test automaticos de Python: Para eso instalamos "pytest" con el comando "pip" y para testar escribimos pytest <nombre de el fichero.py> en la consola. pytest automaticamente concidera dentro de el directorio donde estamos, que todos los ficheros "test_*.py" o "*_test.py" son ficheros de test. Ademas dentro de estos ficheros ejecuta las funciones que contengan "test_*".
+
+Ejemplo de como implementar metodos de test automatico:
+def suma(a, b):
+	return a + b
+
+def test_example():
+	assert suma(4, 5) == 9
+
+------------------------------------------------------------------------------------------------------
+Estructura de lista:
+nombre_lista = ["element1","element2","element_N"]
+
+Funciones con enteros y listas:
+	min(list[]) -> determina el menor elemento de la lista
+	max(list[]) -> determina el mayor elemento de la lista
+	abs() -> devuelve el valor absoluto de un numero
+	sum(list[]) -> suma de todos los elemntos 
+
+nota: cuando colocamos un valor negativo como indice de la lista, python devuelve los elementos de la lista a partir de la ultima posicion, ejemplo: list[-1] devuelve el ultimo elemento, list[-2] devuelve el penultimo elemento, asi sucesivamente.
+	funciones sobre las listas
+	- len(list)	-> longitud de la lista
+	- list.append()  -> adiciona al final de la lista
+	- list.insert(indice, elemento) -> inserta en el indice dado, un elemento en la lista.
+	- list.pop('arg') -> borra un elemento de la lista, si no recibe indice, borra el ultimo.
+	- list.remove(elemento) (***)
+	- list.clear() -> vacea la lista.
+	- list.sort() -> ordena la misma lista insitus, o sea, la modifica. Esta funcion no se puede usar asignando el resultado a una variable pq esta devuelve None siempre. simplemente despues de tener la lista en una variable, se hace list.sort() y seguido se usa las misma lista.
+	- list.reverse() -> invierte la lista
+	- list.index(elemento) -> devuelve el indice de el primer elemento encontrado.
+	- list.count(elemento) -> cuenta la cantidad de ocurrencias de el elemento en la lista.
+	- sorted(list) -> devuelve una nueva ordena la lista, sin alterar la lista
+	- declarar una lista vacia: list = []
+	- list.__setitem__(posicion, 'value') -> reemplaza um elemento de la lista en la posicion dada como parámetro.
+
+*Sublista de un Lista.
+	sublista = lista[indiceX:indiceJ] -> va a tomar el valor de indice inicial hasta el indice final, y la longitud de esa sublista es la resta de indice final-inicial. si colocamos lista[:indice] va a tomar desde el inicio hasta el indice, y si colocamos lista[indice:] va desde indice hasta final, en ambos casos toma el elemnto de el indice.
+
+*Clonar listas
+	nueva_lista = lista[:]
+	list.copy()
+	
+*Pertenencia de un elemento a una lista (search).
+	elemento in Lista -> eso devuelve true si está o false si no está.
+
+*Concatenacion de una lista.
+	lista + lista
+	lista1.extend(lista2)
+
+*Repeticion de lista.
+	lista * x -> lo que hace es repetir la misma lista x veces
+	ejemplo: lista = [1,2,'c']*3 -> el resultado es [1, 2, 'c', 1, 2, 'c', 1, 2, 'c']
+
+*Eliminar elementos de una lista. (***)
+	del lista[x]
+	del lista[x:y] -> mezclando con la obtencion de sublistas.
+	del lista -> elimina la lista completa.
+
+*Comprencion de listas:
+	Generar una lista de con x valores y longitud n [x for i in range(0,n)]
+    first_col = [row[0] for row in matriz]
+    esta linea nos permite obtener el primer vector columna de una matriz
+    si tenemos la matriz y ejecutamos la linea, obtenemos la lista [1,4,7]
+    [[1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]]
+
+------------------------------------------------------------------------------------------------------
+funcion Counter de la biblioteca collections:
+	La funcion cuenta cada caracter que existe en el string y devuelve el numero de repeticiones de cada uno.
+	ejemplo:
+	*- import collections
+	*- c = collections.Counter('helloworld')
+	*- Counter({'l': 3, 'o': 2, 'e': 1, 'd': 1, 'h': 1, 'r': 1, 'w': 1})
+
+
+------------------------------------------------------------------------------------------------------
+Estructura de Diccionario:
+    Crear un diccionario:
+        my_dic = {'key': value}
+    Declarar uno vacio:
+        my_dic = {}
+    acceder a los elementos de el diccionario:
+        my_dic['key']
+    adicionar un elemento al diccionario:
+        my_dic['newKey'] = value
+    eliminar un elemento al diccionario:
+    	my_dic.pop("key") -> elimina el registro y devuelve el valor de la llave
+    funciones de Diccionario:
+    dics.keys() -> devuelve una lista con todas las llaves de el diccionario
+    dics.values() -> devuelve una lista con todos los values de el diccionario
+    dics.items() ->  devuelve una lista con las tuplas de los elementos de el diccionario
+    notas: no mantienen orden ni son sequenciales y ademas son mutables.
+	una forma de recorrer los diccionarios con FOR:
+	for i in dic: -> itera y en i solo tenemos los keys
+	for i in dic.values(): itera y en i solo tenemos los values
+	for i in dic.items(): itera y en i tenemos el item completo en forma de tupla, (key, value)
+	for i in dic.keys(): itera solo por los keys (opcion predeterminada)
+	* si se utlizan dos variables iteradoras se pueden salvar el Key y el Value por separado. Ejemplo:
+		for key, value in phone_numbers.items():
+
+Estructura de tupla():
+    Crear una tupla:
+        my_tupla = (value, value)
+    Declarar una tupla vacia:
+        my_tupla = ()
+    Acceder a los elementos de la tupla:
+        my_tupla[index]
+    convertir una lista en tupla:
+    	tuple(param)
+    nota: las tuplas son lista solo que ellas son inmutables, es decir una vez creadas no pueden ser alteradas de ninguna forma, ni se pueden adicionar nuevos elementos, ni se puede modificar el orden.
+
+Estructura set():
+    los set son un tipo de datos para almacenar colecciones que no tienen indice, cuando son strings no tienen orden, cuando son numeros los ordena, ademas no almacena elementos repetidos. Python visualiza los set con llaves y no con corchetes.
+    Declarar un set:
+		var = {...}
+		var = set() -> declarado vacio
+	convirtiendo una lista en set:
+        var = set([...])
+    Adicionar elemento:
+        var.add(value)
+	Longitud del set:
+		len(var)
+	Eliminar un elemento:
+		var.remove(value)
+	Vaciar el set:
+		var.clear()
+	Copiar un set:
+		var_ = var.copy() -> en este caso var_ es totalmente independiente de var.
+	Eliminar un elemento aleatorio:
+		var.pop() -> elimina el elemento del set y lo devuelve.
+	Operaciones con set:
+	El operador union "|" combina dos conjuntos para formar uno nuevo que contiene elementos en cualquiera de los dos.
+	El operador de intersección "&" obtiene elementos solo en ambos.
+	El operador de diferencia "-" obtiene elementos en el primer conjunto pero no en el segundo.
+	El operador de diferencia simétrica "^" obtiene elementos en cualquier conjunto, pero no en ambos.
+
+Cuándo usar un diccionario:
+- Cuando necesita una asociación lógica entre una clave: par de valores.
+- Cuando necesita una búsqueda rápida de sus datos, basada en una clave personalizada.
+- Cuando sus datos se modifican constantemente. Recuerde, los diccionarios son mutables.
+
+Cuándo usar los otros tipos:
+- Utilice listas si tiene una colección de datos que no necesita acceso aleatorio. Intente elegir listas cuando necesite una colección simple e iterable que se modifique con frecuencia.
+- Use un set si necesita unicidad para los elementos.
+- Use tuplas cuando sus datos no puedan cambiar.
+
+itertools es una biblioteca estándar que contiene varias funciones que son útiles en la programación funcional. Un tipo de función que produce son los iteradores infinitos.
+	- La funcion "count" cuenta infinitamente desde un valor.
+	- La función "cycle" itera infinitamente a través de un iterable (por ejemplo, una lista o cadena).
+	- La función "repeat" repite un objeto, ya sea infinitamente o un número específico de veces.
+
+
+------------------------------------------------------------------------------------------------------
+Ficheross con python nativo:
+
+	- pathlib: Lbreria q sirve para obtener rutas del sistema, ejemplo:
+		pathlib.Path().absolute() -> devuelve la ruta absoluta de donde estamos, pero como tipo de dato pathlib. Hay q convertirla a str si queremos hacerla legible.
+		os.path.abspath(path) -> devuelve la ruta completa de la ruta pasada por parametros, si colocamos "./" devuevle la ruta absoluta de la carpeta donde estamos.
+	
+	- shutil: módulo que ofrece una serie de operaciones de alto nivel con file.
+	copiar archivos
+		shutil.copyfile(origen, destino)
+
+  - Para leer archivos con ruta absoluta en Windows, se usa la letra (r) delante de la string para ignorar caracteres especiales.
+  ejemplo:
+    file = open(r"C:\User\<username>\Documents\text.txt", 'r')
+
+	mover archivo
+		shutil.move(origen, destino)
+	
+	eliminar archivo con la biblioteca os
+		os.remove(path del archivo)
+	
+	comprobar si existe un archivo
+		os.path.isfile(path del archivo) -> devuelve true o false
+	
+	comprobar si existe un directorio
+		os.path.isdir() -> devuelve true o false
+	
+	crear un directorio
+		os.mkdir(path)
+	
+	eliminar una carpeta
+		os.rmdir(path)
+		
+	copiar carpetas
+		shutil.copytree(origen, destino)
+		
+	Listar los archivos de un directorio
+		os.listdir(path) -> devuelve una lista con los nombres de los ficheros
+
+    para abrir un fichero de texto hay q pasar la url de el fichero como parametro:
+        my_file = open('url del fichero', 'modo de abrir fichero')
+       	los modos pueden ser:   	
+       	========= ===============================================================
+	    Character Meaning
+	    --------- ---------------------------------------------------------------
+	    'r'       open for reading (default)
+	    'w'       open for writing, escribe los valores nuevos sin mantener los viejos
+	    'x'       create a new file and open it for writing, si el fichero existe mostrará un error pq no sobreescribe
+	    'a'       open for writing, appending to the end of the file if it exists
+	    'b'       binary mode, leer o escribir un fichero binario.
+	    't'       text mode (default)
+	    '+'       open a disk file for updating (reading and writing)
+	    'U'       universal newline mode (deprecated)
+	    ========= ===============================================================
+		para abrir, escribir y leer se utiliza la combinacion 'a+'
+
+    para leer el fichero abierto:
+        my_file.read() -> una vez leido el cursor se situa al final del fichero y hay q colocarlo al inicio de el fichero nuevamente. La funcion read() si recibe un int como parámetro, leerá esos N primeros caracteres.
+
+    para colocar el cursor en una linea deseada del fichero:
+        my_file.seek(num) -> num=numero de la linea deseada, num=0 inicio del fichero
+
+    leer linea por linea:
+        my_file.readline() -> devuelve la linea leida.
+        my_file.readlines() -> esta funcion devuelve una lista donde cada elemento de la lista es una de las lineas de el fichero.
+
+	para escribir un fichero:
+		my_file.write('texto a escribir')
+
+	ejemplo:
+		file = open('my_text.txt', 'w')
+		file.write('Este es mi texto')
+		file.close()
+
+		file = open('my_text.txt', 'r')
+		print(file.read())
+		file.close()
+
+	otro ejemplo: Buena practica para cerrar siempre que abrimos un fichero.
+		try:
+			f = open('fichero.txt')
+			print(f.read())
+		finally:
+			f.close()
+
+	otro ejemplo: En este caso f solo funciona si está indentado en el bloque with.
+		with open('Texto.txt') as f:
+			print(f.read())
+
+
+------------------------------------------------------------------------------------------------------
+Declaracion de Clases:
+    class ClassName:
+        atributos
+        constructor
+        metodos o funciones
+nota: los atributos si utilizan cuando se quiere colocar algun parametro fijo, valor especifico, de lo contrario, se pasan directo en el constructor como parametros.
+
+Para declarar el constructor se hace de la sgte manera:
+ siempre se coloca self como primer parametro de la lista de parametros de el constructor.
+    def __init__(self, param1, param2):
+        self.param1 = param1
+        self.param2 = param2
+
+nota: todos los metodos o funciones implementados dentro de la clase, tienen q recibir el parametro "self" de primera opcion.
+
+Herencia de Clases:
+    class DerivedClassName(BaseClassName):
+        atributos
+        constructor
+        metodos o funciones
+nota: Las funciones o metodos definidos en la clase padre y redefinido en la clase hijo, el de la clase padre será, sobreescrito u omitido, es decir, el resultado que se mostrará es el de la clase hijo.
+
+Metodos especiales de Clases:
+    __init__ (constructor de la clase)
+    __str__ (metodo que utiliza print() para imprimir un objeto)
+    __len__ (metodo para definir la longitud de el objeto)
+    __del__ (destructor de la clase)
+
+
+------------------------------------------------------------------------------------------------------
+Funcion Random
+  Para usar la funcion random hay q importar Random.
+  Ejemplo:
+    - import random
+    - random.random()
+  nota: el metodo random de la biblioteca random genera numeros aleatorios entre 0 y 1, para generar numeros enteros se usa el metodo randint(a, b) donde a y b son los extremos de el intervalo y son incluyentes, el metodo choice(a) donde a es un conjunto de elementos, devuelve un valor aleatorio de un conjunto de datos, por ejemplo de una lista de elementos que no este vacia.
+  Ejemplo:
+    - list = ['hola', 'hi', 'hey', 'bye', 'see you']
+    - random.choice(list)
+    En este caso devolvera un elemento aleatorio de list.
+
+  Nota: tambien existe el metodo choices(a, weights=[v1, v2, v3, v4, vn], k=interger), donde a es un conjunto de elementos, , weights es una lista para darle peso a los elementos de la muestra, o sea, se cololan la misma cantidad de numeros enteros que tiene la muestra y mientras mayor sea el numero puesto, es mayor la probabilidad de que aparezca y k el numero de elementos que queremos generer aleatoriamente, devuevle una lista con elementos aleatorios de otra lista mayor,
+  Ejemplo:
+    - list = ['hola', 'hi', 'hey', 'bye', 'see you']
+    - random.choices(list, k = 3)
+    En este caso devolvera una lista con 3 elementos aleatorios de list.
+
+  Nota: otro metodo de la biblioteca random es shuffle(a) donde a es un conjunto de elementos, devuelve el mismo conjunto pero aleatorio todo el tiempo.
+
+
+------------------------------------------------------------------------------------------------------
+Funcion Round (Para redondear numeros)
+  La funcion round(X, B) es para redondear numeros donde X es el numero, B es la cantidad de lugares después de la coma. Si B es positivo, son los lugares despues de la coma, si B es negativo, son ceros antes de la coma. Ejemplo:
+	round(31415, -1) -> 31420
+	round(31415, -2) -> 31400
+	round(31415, -3) -> 31000
+	round(31415, -4) -> 30000
+
+
+------------------------------------------------------------------------------------------------------
+Funcion random.rand()
+	genera numeros aleatorios entre 0 y 1. Si se pasan argumentos a la funcion se obtenien diferentes resultados. Por ejemplo, pasando un solo argumento se obtiene un arreglo, pasando dos argumentos se obtiene una matriz y si no se pasa argumento se obtiene un numero. Los argumentos van separados por coma.
+	random.rand() -> devuelve un numero
+	random.rand(a) -> devuelve un vector
+	random.rand(a, b) -> devuelve una matriz
+
+
+------------------------------------------------------------------------------------------------------
+Leer entrada de teclado:
+    input("texo")
+  ejemplo:
+    var = input("entre un texo")
+    
+------------------------------------------------------------------------------------------------------
+Comparar semejanzas entre cadenas.
+	Se utiliza el modulo difflib y dentro de el se puede utilizar
+	SequenceMatcher() que determina el grado de semejanza que existe, ejemplo:
+	SequenceMatcher(None, "cadena1", "cadena2").ratio() -> determina cuanto se parece cadena1 con cadena2
+	
+	get_close_matches() devuelve una lista con las posibles coincidencias. ejemplo
+	get_close_matches("cadena1", [lista de cadenas], n=x, cutoff) -> verifica si cadena1 se parece con algunos de los elementos de lista de cadena. n se utiliza para determinar el numero de palabras con las que tiene parecido, por defecto n=3, o sea, solo muestra las 3 palabras con las que mayor parecido tiene. Como resultado devuelve una lista con las palabras parecidas, ordenadas de mayor parecido a menor, siendo la primera (pos=0) la de mayor parecido. Cutoff es el nivel de tolerancia a la hora de comparar, mientras mayor el cutoff, mayor rigurocidad, por defecto cutoff=0.6
+
+------------------------------------------------------------------------------------------------------
+Tratamiento de errores: usamos Try Except Else Finally
+	try:
+		code
+	except:
+		error
+
+	except para captar los errores y else & finally se colocan despues, else se ejecuta si no hubo error alguno, finally se ejecuta siempre al final.
+
+	assert es una funcion que permite comprobar errores, ejemplo:
+		assert 2 + 2 == 5 devuelve False.
+	la funcion tambien puede tomar un segundo argumento
+		temp = -10
+		assert (temp >= 0), "Colder than absolute zero!"
+------------------------------------------------------------------------------------------------------
+Funcion textwrap:
+	Se puede utilizar para wrapping y formatear texto sin formato. Este módulo proporciona formato de texto ajustando los saltos de línea en el párrafo de entrada.
+
+	textwrap.fill(string, #) -> separa la string en # lineas independientes
+	textwrap.wrap(string, #) -> separa la string en # elementos de un array
+------------------------------------------------------------------------------------------------------
+#### Pandas ####
+para leer ficheros se coloca pandas.read_[tipo de fichero]('ruta')
+ejemplo:
+    pandas.read_csv('ruta')
+    pandas.read_excel('ruta', sheet_name=0, index_col=None, header)
+
+la funcion info() nos brinda la informacion del fichero leido
+ejemplo:
+    fichero = pandas.read_csv('ruta')
+    print(fichero.info())
+
+La funcion head() devuelve las primeras n lineas del fichero leido (Por default devuelve las primeras 5)
+ejemplo:
+    fichero.head()
+
+La funcion replace(to_replace, value) reemplaza el primer parametro por el segundo
+ejemplo:
+    fichero.replace('a', 'bb')
+
+La funcion describe() genera una estadistica del conjunto de datos
+ejemplo:
+    fichero.describe()
+
+La funcion count devuelve la cantidad de registros por columnas
+ejemplo:
+    fichero.count()
+
+La funcion columns devuelve los nombres de las columnas del fichero en un arreglo
+ejmeplo:
+	fichero.columns
+
+La funcion tail() devuelve las ultimas n lineas del fichero leido (Por default devuelve las ultimas 5)
+	fichero.tail()
+
+La funcion info() devuelve una informacion completa del Dataframe.
+	fichero.info()
+
+La funcion keys() devuelve el nombre de las columnas del Dataframe, pero si en la funcion read_excel() pasamos sheet_name=None como parametro, devuelve el nombre de las pestañas.
+	fichero.keys()
+
+La funcion iterrows() permite iterar por las filas del Dataframe dentro de un ciclo.
+	for index, item in Dataframe.iterrows()
+
+------------------------------------------------------------------------------------------------------
+#### NumPy ####
+
+Concatenar dos matrices:
+	np.concatenate((m1, m2, mx), axis=) -> por defecto concatena en el axis=0 y deben tener la misma cant de columnas, o sea, una debajo de la otra, para concatenar una al lado de la otra, axis=1 y deben tener la misma cant. de filas. Si axis=None crea un arreglo en la salida.
+
+Funcion para adicionar elementos:
+	np.append(array, value, axis) -> value puede ser un elemento o un arreglo. Si se adiciona un arreglo a otro arreglo, el que se adiciona se coloca al final formando un solo arreglo. Para adicionar una fila los dos arreglos tienen q tener la misma cant. de columnas y para adicionar una nueva columna los arreglos tienen q tener la misma cant de filas (la funcion append usa la funcion concatenate).
+	
+Funcion para insertar elementos:
+	np.insert(array, index, value, axis) -> sigue el mismo principio de append.
+
+Funcion para eliminar un qelemento:
+	np.delete(array, value, axis) -> en este caso axis se usa para decidir si eliminar una columna o una fila.
+
+Atributo SIZE devuelve la cantidad de elemntos de un arreglo:
+	np.array().size
+	Nota: es similar a la funcion len() en arreglos 1-D, pero en matrices len() devuelve la cantidad de filas que tiene la matriz, size devuelve la cantidad de elemntos que tiene la matriz.
+
+Atributo SHAPE de vuelve el numero de filas, columnas y elementos en cada posicion del arreglo (en imagenes fila, columna, canal):
+	np.array().shape
+
+Atributo NDIM devuelve la dimension de un arreglo:
+	np.array().ndim
+
+Funcion para entontrar el indice de un elemento:
+	np.where(array == element) -> devuelve un arreglo con el indice de element en el arreglo, si el elemento esta repetido devuelve todas las posiciones del elemento en el orden que son encontrados, o sea, la primera posicion es la primera ocurrencia.
+
+Funcion zeros():
+	crea un vector o matriz con valores Cero, ejemplo
+	np.zeros([5,3]) -> matriz de 5filas x 2columnas
+	np.zeros(3) -> vector fila con tres elementos
+	nota: utilizando el parametro dtype=np.bool dentro de la funcion, se crea una matriz o vector con valores False.
+
+Funcion ones():
+	crea un vector o matriz con valores Uno, ejemplo
+	np.ones([5,3]) -> matriz de 5filas x 2columnas
+	np.ones(3) -> vector fila con tres elementos
+	nota: utilizando el parametro dtype=np.bool dentro de la funcion, se crea una matriz o vector con valores True.
+	np.ones(, dtype=np.bool)
+
+Funcion linspace(start, stop, num, endpoint, dtype)
+	se utiliza para crear vectores.
+	- start : array_like:
+		valor inicial del arreglo.
+	- stop : array_like
+		valor final del arreglo.
+	- num : int, optional
+		Numero de muestras o elementos del arreglo. Predeterminado es 50, este valor no puede ser negativo.
+	- endpoint : bool, optional
+		Si el valor es True, se inlcuye stop en el arreglo como elemento final, si es False no se incluye. Predeterminado es True.
+
+Funcion arange(inicio, fin, paso):
+	crea un arreglo (vector) con inicio, fin, y salto o paso
+		np.arange(0, 20, 5) -> [0,  5, 10, 15]
+	se puede usar para crear matriz:
+		np.arange(10).reshape(5, 2)
+
+Funcion para desplazar elementos en una lista o matriz:
+	np.roll(array, shift, axis=None)
+	nota: si el desplazamiento pasa la ultima posicion del array, lo re-incorpora al inicio, (desplazamientos cirular). En el caso de matrices, si shift es una tupla, axis tiene q ser una tupla del mismo tamaño. axis siempre hay q definirlo para np.matriz (0, 1, (0,1)), en el caso de ndarray axis=1 como valor predeterminado.
+
+Funcion mean(vector, axis=0):
+	calcula la media de un arreglo (vector). axis permite calcular la media por columna si el valor es 0 y por filas si el valor es 1.
+
+Funcion std(vector, axis=0):
+	calcula la desviacion estandar
+
+Funcion para determinar el valor minino
+	np.amin(array)
+	np.min(array)
+
+Funcion para determinar el valor maximo
+	np.amax(array)
+	np.max()
+
+Funcion para obtener la transpuesta de una matriz:
+	np.transpose(matriz)
+	matriz.T
+
+Funcion para obtener la Inversa de una matriz:
+	np.matrix(ndarray).I -> esto significa que hay q convertirla en matriz antes de calcular la inversa.
+	np.linalg.inv()
+
+Funcion para convertir una lista en Numpy array:
+	np.array(list)
+
+Funcion para convertir una lista de listas en Numpy matrix:
+	np.matrix(list)
+
+Funcion para convertir una tupla en Numpy array:
+	np.array(tupla)
+	
+Funcion para convertir numpy array en lista:
+	array.tolist()
+
+Funcion para colapsar matriz en un vector
+	ndarray.flatten()
+
+Funcion para convertir el tipo de dato de los elementos de un ndarray
+	ndarray.astype('dtype') -> dtype es el nuevo tipo de dato al que queremos convertir los elementos del ndarray y se pasan como string.
+	
+Funcion para exportar Numpy array en CSV:
+	np.savetxt("name.csv", array) -> tambien se puede usar para salvar como fichero de texto, donde se puede espesificar el delimitador y otros parametros. Para eso consultar la documentacion.
+	
+Funcion para ordenar Numpy array:
+	np.sort(array)
+
+Funcion para crear una matriz de (ceros) con (unos) en la diagonal principal
+	np.eye(N, M) -> N: numero d filas, M numero de columnas(opcional), si se omite se crea una matriz cuadrada.
+
+Funcion para obtener el indice del maximo y el minimo
+	np.argmax(input_array, axis=None)
+	np.argmin(input_array, axis=None)
+	Nota: en caso de que sea una matriz lo q se pasa por parametros, si pasamos axis=0 devuelve el max_index_col y si pasamos axis=1 devuelve max_index_row
+
+Funcion para ordenar de los elementos de un array y devolver las posiciones
+	np.argsort(array)
+	nota: la funcion ordena el array y luego devuelve las posiciones de los elementos ya ordenados. Ejemplo: si el menor elemento del array esta en la posicion 5, ese será el primer elemento del array en la salida. Para usar el parametro "axis=" leer la documentacion.
+
+Funcion para obtener los indices de elementos de una matriz, donde el elemento sea distinto de cero.
+	np.argwhere(array)
+	nota: Para incluir valores igual a cero se puede usar una comparacion en el argumento. Ejemplo: array >= 0, eso sirve tambien para filtrar el valor de los elementos buscados, por un valor espeifico o definido previamente. Ejemplo: array >= n
+	
+Funcion para unir (empilar) varios array a lo largo de un eje
+	np.stack(array, axis=)
+	Nota: Si axis=0 empila por la primera dimencion, es decir, cada array seria una fila de la nueva matriz (un array debajo del otro), si axis=-1 empila por la ultima dimencion, hace una especie de transpuesta en el caso de ser 2D la matriz resultante.
+	
+Funcion para contar las ocurrencias de un valor en una matriz o arreglo
+	np.count_nonzero(ndarray == 2) -> como parametro se pasa el numero que se desea contar. En el ejemplo contara la cantidad de 2 que hay en la matriz.
+
+Funcion para verificar si una submatriz (array) está en una Matriz (array)
+	np.isin(argA, argB) -> Calcula el argA en argB, transmitiendo solo sobre el argA. Devuelve una matriz booleana de la misma forma que argA que es Verdadero donde un elemento de argA está en argB y Falso en caso contrario.
+	nota: Leer la documentacion para saber sobre los demas parametros.
+
+Forma de binarizar una imagen:
+	(img > thresh) * 1 
+	(img > thresh).astype(np.int_)
+	Nota: la operacion (img > thresh) devuelve una matriz booleana donde False representa 0 y True representa 1, al multiplicarlo por algun numero, convierte todo los True en el numero y los False en cero. En el caso de usar .astype(np.int_) siempre coloca 1 en los valores True.
+
+Numeros aleatorios:
+	np.ramdon.rand(p1, p2, pX) -> Si recibe 1 parametro genera un vector, si recibe 2 parametros genera una matriz de dimensiones (param1, param2), si recibe x parametros genera una matriz de X dimensiones. Siempre genera distribucion uniforme con numeros entre 0-1.
+	np.ramdon.randn(p1, p2, pX) -> funciona igual a la anterior pero incluye numeros negativos.
+	np.set_printoptions() -> permite fijar la cantidad de lugares decimales a traves del parametro precision=.
+------------------------------------------------------------------------------------------------------
+#### Seaborn ####
+Biblioteca de visualización de datos basada en matplotlib. Proporciona una interfaz de alto nivel para dibujar gráficos estadísticos atractivos e informativos.
+
+
+------------------------------------------------------------------------------------------------------
+#### Matplotlib ####
+print(plt.style.available) -> Imprimir los temas disponibles.
+
+matplotlib.style.use('tema') -> Cambia el tema de los graficos.
+matplotlib.savefig('path') -> salva el grafico ploteado en una imagen.
+matplotlib.xticks(array) -> definir manualmente los valores del eje X
+matplotlib.yticks(array) -> definir manualmente los valores del eje X
+matplotlib.axvline() -> crea una linea vertical.
+matplotlib.axhline() -> crea una linea horizontal.
+matplotlib.fill_between() -> Rellene el área entre dos curvas horizontales.
+matplotlib.axis('off') -> elimina los ejes
+
+Parametros:
+cmap='' -> permite definir el mapa de colores.
+alpha=valor -> para aumentar y disminuir la transparencia, valores entre 0 y 1.
+where=(condicion) -> permite crear una condicion para mostrar el plot. usado en la funcion fill_between().
+
+Forma de plotear dos imagenes una encima de la otra: Se utiliza imshow() para cada imagen, pero la segunda o ultima se le añade una transparencia usando "alpha":
+	plt.imshow(img1)
+	plt.imshow(img2, alpha=0.5)
+	plt.show()
+
+Utilizando "~" antes de la imagen, dentro de la funcion imshow() invierte los colores de la imagen.
+------------------------------------------------------------------------------------------------------
+#### JSON ####
+funcion load(f) -> Lee directamente desde un archivo JSON. O sea, no necesitas leer primero el archivo.
+funcion loads(f) -> Lee desde un string con forma o estructura de JSON. O sea, es necesario leer primero el archivo para poder parser el archivo como string.
+funcion pop(key) -> elimina un item dada la key y devuelve el value.
+funcion popitem() -> elimina el ultimo item y lo devuelve completo en una tupla.
+funcion clear() -> limpia el dict.
+
+para escribir un JSON:
+	- Salvar la informacion en un diccionario. Es la forma mas facil.
+	- usar la funcion dumps() para serializar el objeto como un json.
+	- Escribir archivo.
+Ejemplo 1:
+	data (dicionario con la informacion)
+	json_file = json.dumps(data)
+	with open('name_of_file.json', 'w') outfile:
+		outfile.write(json_file)
+
+Ejemplo 2: (puede ser un poco mas lenta para grandes archivos)
+	data (dicionario con la informacion)
+	with open('name_of_file.json', 'w') outfile:
+		json.dump(data, outfile)
+
+nota: la funcion dump tiene varios parametros(
+	1. sort_keys=bool [ordena las llaves del json alfabeticamente]
+	2. ensure_ascii=bool [permite salvar codigos que no son ASCII en el JSON. Valor True(default) convierte todo a ASCII y si no existe pues JSON crea una numenclatura para liberarlos]
+	3. indent=int [numero de tabs para darle formato a la salida]
+)
+
+------------------------------------------------------------------------------------------------------
+#### Scikit - Image ####
+Dentro de la biblioteca Data existen algunas imagenes:
+	data.camera()
+
+Existen dos tipos de tratamiento de imagenes: 
+0-1   : cero es negro y 1 es blanco. En este caso son numeros float64 con valor maximo 1
+0-255 : cero es negro y 255 es blanco. En este caso son numeros enteros sin signos uint8 con valor maximo 255
+
+Al tratar con imagenes en skimage las coordenadas de la imaginen se dan (y, x, chanel), se maneja como una matriz 3D donde y=filas, x=columnas, chanel=valor R=0,G=1,B=2
+
+Para plotear varias imagenes, igual a un subplot, se usa la biblioteca "skdemo" con la funcion "imshow_all()". Este modulo no esta incluido en python. Ejemplo
+	import skdemo
+	skdemo.imshow_all(img1, img2, img3, ...)
+
+Para plotear la imagen con su respectivo histograma se usa la funcion "imshow_with_histogram()" de la biblioteca "skdemo". Este modulo no esta incluido en python. Ejemplo
+	import skdemo
+	skdemo.imshow_with_histogram(image)
+
+Para leer una imagen se importa el modulo "io" de la biblioteca "skimage". Ejemplo
+	from skimage import io
+	io.imread("path")
+
+Para convertir una imagen a escala de grises, se usa la funcion "rgb2gray" del modulo "color" importado de la biblioteca "skimage". Otra forma de convertir imagenes a grises es usando la funcion "as_gray=True" como parametro de la funcion imread(). Ejemplo
+	from skimage import color
+	color.rgb2gray(img)
+	io.imread("path", as_gray=True)
+
+### Contraste ###	
+Funcion para variar el contraste de la imagen. Usa los valores pasados en "in_range" como minimo y maximo, es decir, esos valores serán el 0 y el 255 de la imagen. (Estudiar para entender mejor, algo así como re escalar la intensidad de la imagen tomando los valores de in_range). Se encuentra dentro del modulo "exposure" de la biblioteca "skimage"
+	from skimage import exposure
+	exposure.rescale_intensity(image, in_range=())
+
+## Cumulative distribution function (CDF) ##
+Para mostrar la imagen con histograma y ver los valores CDF se usa la funcion "plot_cdf" del modulo "skdemo". Se usa "imshow_with_histogram" y se almacena el resultado en variables. Ejemplo
+	ax_image, ax_hist = skdemo.imshow_with_histogram(image)
+	skdemo.plot_cdf(image, ax=ax_hist.twinx())
+
+Para realizar una ecualizacion de la imagen, mejorar el contraste general de la imagen. se usa la funcion "equalize_hist" del modulo "exposure" de la biblioteca "skimage".
+	from skimage import exposure
+	equalized = exposure.equalize_hist(img)
+	ax_image, ax_hist = skdemo.imshow_with_histogram(equalized)
+	skdemo.plot_cdf(equalized, ax=ax_hist.twinx())
+
+## Contrast-limited adaptive histogram equalization (CLAHE) ##
+Para realizar una mejor ecualizacion, mejorar los contrastes de manera localizada, se utiliza a funcion "equalize_adapthist" del modulo "skdemo". Ejemplo
+	from skimage import exposure
+	equalized = exposure.equalize_adapthist(image)
+	ax_image, ax_hist = skdemo.imshow_with_histogram(equalized)
+	skdemo.plot_cdf(equalized, ax=ax_hist.twinx())
+
+## Histograms and thresholding ##
+
+------------------------------------------------------------------------------------------------------
+#### OpenCV ####
+
+capture properties -> CAP_PROP es como comienzan las funciones para obtener propiedades del video. Deben capturarse utilizando .get(CAP_PROP). Ejemplo
+	video.get(cv2.CAP_PROP_*)  #TAB para autocompletar con diferentes opciones
+
+Restar dos imagenes
+	cv2.absdiff(img1, img2) -> resta dos imagenes como dos array y en los pixeles que el resultado es negativo, devuelve el valor absoluto de la operacion. (100 - 160) = |-60|
+	cv.subtract(img1, img2) -> resta dos imagenes como dos array y en los pixeles que el resultado es negativo, devuelve cero como resultado. 100 - 160) = 0
+
+Sumar dos imagenes
+	cv2.add(img1, img2) -> suma los pixeles y donde el resultado es mayor a 255, coloca como resultado 255.
+	cv2.addWeighted(img1, alpha1, img2, alpha2, gamma) -> Gamma es un escalar añadido a la suma, los valores de alpha determinan la transparencia de la imagen.
+
+Combinar dos imagenes
+	cv2.merge()
+
+Buscar contornos de un objeto en una imagen binaria:
+	cv2.findContours(image, modo, método) -> esta funcion devuelve una tupla donde la primera posicion es la imagen y la segunda es una lista con las coordenadas del contorno de los objetos.
+	modos:
+		- CV_RETR_EXTERNAL
+		- CV_RETR_LIST
+		- CV_RETR_CCOMP
+		- CV_RETR_TREE
+	metodos:
+		- CV_CHAIN_APPROX_NONE: almacena todos los puntos del contorno.
+		- CV_CHAIN_APPROX_SIMPLE: comprime segmentos horizontales, verticales y diagonales y deja solo sus puntos terminales. Por ejemplo, para un rectangulo solo almacena los 4 puntos de las esquinas.
+
+contourArea()
+
+Escribir texto en la imagen:
+	cv2.putText(imagen, texto)
+	
+------------------------------------------------------------------------------------------------------
+
+Modulo Glob
+	glog.glog(fileExtension:str) ---> busca todos los archivos con extension especificada en una carpeta determinada (Por default, donde se ejecuta el script)
+
+Modulo CSV 
+	csv.reader(file) ---> lee archivo .csv. Esta funcion devuelve un obj csv, es necesario hacer el casting para list().
+
+Modulo shutil
+	shutil.make_archive(filename:str, fileformat:str, filepath:str) ---> Crea archivos compactados (tar, [(zip, gztar)->zlib], bztar->bz2, xztar->lzma) con todo el contenido que se encuentra en la raiz donde se ejecuta el script. Dependencias del SO, bibliotecas zlib, bz2, lzma.
+
+Modulo webbrowser
+	webbrowser.open(url:str) ---> abre la url en el navegador.
+
+------------------------------------------------------------------------------------------------------
+PySimpleGUI con Tkinter
+	Siempre que se usa PySimpleGUI para crear UI se crea un objeto del tipo Window(str, layout, font, other_args), donde "str" es el titulo de la ventana, layout es una lista donde en cada fila estaran organizados los componentes (widgets). Una vez creado y almacenado el objeto Window, se usa la funcion read() para leer ese objeto. Esa funcion read() devuelve el evento que se clicó y una lista de los widgets y sus respectivos valores.
+	layout = [[label1], [input1, btn1], [label2], [listbox2], [btn3, btn4]]
+	window = sg.Window('str', layout=layout, font=('Helvetica', 11))
+    event, values = window.read()	
+	
+	Para ubicar los widgets en las la UI se sigue la idea de una matriz, y los widget se alinean asi. Para realizar una alineacion mas organizada se pueden agrupar los widget por columnas, como el ejemplo abajo:
+	
+	col1 = sg.Column([[label1], [label2]])
+	col2 = sg.Column([[input1], [input2]])
+	col3 = sg.Column([[choose_button1], [choose_button2]])
+	layout=[[col1, col2, col3], [extract_button]]
+
+------------------------------------------------------------------------------------------------------
+Crear ejecutables en Linux/Windows:
+	pyinstaller --onefile --windowed --clean ToDo-UI.py
+
+------------------------------------------------------------------------------------------------------
+Streamlit: Biblioteca para trabajar web pages. Interesante para incrustar(embebbed) Markdown en la web. (https://docs.streamlit.io/)
+	streamlit as st
+	st.write("text", *args) -> puede rederizar varios tipos de objetos. Para rederizar HTML se escribe el codigo html como texto y te usa el parametro unsafe_allow_html=True
+	st.text_input(label='', *args) -> el parametro label es obligatorio y se usa para colocar un texto encima del input text. Si no quiere colocar ningun texto tiene q usar una str vacia.
+	st.title("text")
+	st.set_page_config(layout="wide") -> Se utiliza para ajustar el layout de la pagina web completa. Usando wide se expande el width al 100% de manera responsive.
+	st.info("text") -> para colocar un texto con un fondo para demarcación.
+	st.image("path_image", width=<int>)
+	st.form()
+	---
+	- Si queremos tener varias paginas, basta crear una carpeta con el nombre "pages" y colocar dentro los archivos .py que queremos paginar. Esto creara automaticamente un menu lateral con los archivos que están dentro de la carpeta.
+	- Para dividir la pagina en columnas se usa la funcion columns. Estas se almacenan en variables separadas y luego se usan para agregar contenido en las columnas. Para dar un tamaño mas preciso a las columnas, en lugar de pasar como parametro el numero de columnas, se pasa una lista con las dimenciones, incluyendo la dimencion del espacion en blanco entre las dos columnas.
+		columna_1, columna_2 = st.columns(2)
+		columna_3, empty_space, columna_4 = st.columns([2, 0.5, 2])
+		with columna_1:
+			st.write()
+		
+		with columna_2:
+			st.write()

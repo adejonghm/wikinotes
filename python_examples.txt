@@ -1,0 +1,41 @@
+Checks a flat list for duplicate values. Returns True if duplicate values exist and False if values are all unique.
+This function compares the length of the list with length of the set() of the list. set() removes duplicate values from the list.
+    def has_duplicates(lst):
+        return len(lst) != len(set(lst))
+
+Checks if a string is lower case.
+Convert the given string to lower case, using str.lower() method and compare it to the original.
+	def is_lower_case(string):
+	    return string == string.lower()
+
+Returns the length of a string in bytes.
+utf-8 encodes a given string and find its length.
+	def byte_size(string):
+	    return(len(string.encode('utf-8')))
+
+Returns True if the given string is a palindrome, False otherwise.
+Convert string str.lower() and use re.sub to remove non-alphanumeric characters from it. Then compare the new string to the reversed.
+	def palindrome(string):
+		from re import sub
+		s = sub('[\W_]', '', string.lower())
+		return s == s[::-1]
+
+Returns the n minimum elements from the provided list. If n is greater than or equal to the provided list's length, then return the original list(sorted in ascending order).
+Use list.sort() combined with the deepcopy function from the inbuilt copy module to create a shallow clone of the list and sort it in ascending order. Use [:n] to get the specified number of elements. Omit the second argument, n, to get a one-element list
+	from copy import deepcopy
+	def min_n(lst, n=1):
+	    numbers = deepcopy(lst)
+	    numbers.sort()
+	    return numbers[:n]
+
+Checks a flat list for all unique values. Returns True if list values are all unique and False if list values aren't all unique.
+This function compares the length of the list with length of the set() of the list. set() removes duplicate values from the list.
+	def all_unique(lst):
+    	return len(lst) == len(set(lst))
+
+
+Retuns number of vowels in provided string.
+Use a regular expression to count the number of vowels (A, E, I, O, U) in a string.
+	import re
+	def count_vowels(str):
+		return len(len(re.findall(r'[aeiou]', str, re.IGNORECASE)))

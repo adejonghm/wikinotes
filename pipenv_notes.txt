@@ -1,0 +1,53 @@
+Comandos pip:
+	Desinstalar varios paquetes de una vez:
+		pip freeze | grep <paquetes a desinstalar> | xargs pip uninstall -y
+		pip freeze | xargs pip uninstall -y <- "Desinstala todos los paquetes"
+		pip freeze --user | xargs pip uninstall -y
+		pip uninstall -y -r requirements.txt
+		pip uninstall -y -r < (pip freeze)
+	
+	Mostrar paquetes solo de (user-site):
+		pip freeze --user
+
+Listar los paquetes instalados globalmente:
+	pip freeze
+	pip list
+
+Actualizar paquetes
+	pip install <paquete> --upgrade
+
+Listar los ambiente aislado creados se lista el directorio:
+	/home/dejongh/.local/share/virtualenvs/
+
+Crear un ambiente de python:
+	pipenv install (mejor opcion pq crea los achivos pipfile y pipfile.lock)
+	pipenv --python 3.6 -> para crear un entorno con una version especifica de python
+	nota: necesita tener instalado pipenv usando pip.
+	
+Acceder al ambiente creado:
+	pipenv shell -> dentro del directorio donde se creó el ambiente (con los archivos Pipfiles).
+
+Instalar un paquete dentro del ambiente (estar dentro de la carpeta del VirtualEnv, donde se encuentra el Pipfile):
+	pipenv install <paquete>
+			<paquete>==[major.minor.micro] -> especificando version usando Semantic Versioning
+			== -> de está forma siempre será esa version fija y nunca se actualizará automaticamente
+			~=1.2; >=1.2 -> instalará una versión igual o mayor que 1.2.0
+			<=1.2 -> -> instalará una versión igual o inferior a 1.2.0
+ 
+Pipenv will install version 1.2 and any minor update, but not 2.0.
+
+This will update your Pipfile to reflect this requirement, automatically.
+	
+	
+	
+  pipenv install requirement.txt -> para desde un archivo con versiones de paquetes especificas
+  nota: instalar siempre q creo un env: pylint, autopep8
+
+Desinstalar un paquete dentro del virtual env:
+	pipenv uninstall <paquete>
+
+Ejecutar un terminal python dentro de un ambiente:
+	python
+
+Listar opciones:
+	pipenv --help
