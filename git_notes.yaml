@@ -1,0 +1,140 @@
+configurar git por primera vez:
+    - git config --global user.name "<name>"
+    - git config --global user.email "<email>"
+    - git config --global core.editor <editor>
+    - git config --list
+    - nota: 
+        - "Estos comando se definen una sola vez, al instalar Git"
+        - "Usar la opcion --global es para leer y escribir en el fichero ~/.gitconfig"
+        - "Usar la opcion --system para escribir en /etc/gitconfig"
+
+Obtener ayuda:
+    git help <config, tag, ...>
+
+iniciar un reporsitorio:
+    git init
+
+clonar un repositorio:
+    git clone <url>
+
+ver el estado del repositorio:
+    git status
+
+Agregar archivos nuevos (Prepara los cambios):
+    - git add [options] <filename>
+    - nota: 
+        - "La opcion -A se usa para agregar todos los archivos"
+        - "La opcion -u se usa para agregar modificaciones y eliminaciones, sin archivos nuevos"
+        - "La opcion . se usa para agregar nuevos archivos y modificaciones, sin eliminaciones (en el directorio actual y sus subdirectorios)."
+        - "Para agregar algun archivo en especifico, solo se coloca el nombre sin opciones"
+
+Revisando el estado del repositorio en detalles:
+    - git diff
+    - git diff <filename>
+    - git diff --staged
+    - nota:
+        - "este comando muestra las lineas que fueron modificadas en cada archivo"
+        - "si se usa sin argumento, muestra los archivos modificados"
+        - "--staged compara los cambios hechos con el ultimo commit"
+
+Enviar los archivos (Confirmar los cambios):
+    - git commit -m "mensaje"
+    - nota:
+        "La opcion -m es para escribir el mensaje del commit, por el cual será identificado."
+
+Eliminar un archivo del repositorio:
+    - git rm
+    - git rm --cache <filename>
+    - nota:
+        - "ademas de eliminar el archivo del repositorio, lo eliminar del directorio de trabajo"
+        - "La opcion --cache elimina el archivo de git pero lo mantiene en el HDD"
+
+Cambiar nombre de un archivo:
+    - git mv
+
+Ver Log:
+    - git log [options]
+    - OPCIONES:
+        -#				Muestra los ultimos (commit del historial)
+        -p 				Muestra el parche introducido (diferencias) en cada confirmación (commit).
+        --stat 			Muestra estadísticas sobre los archivos modificados en cada confirmación.
+        --graph 		Muestra un gráfico ASCII con la historia de ramificaciones y uniones.
+        --pretty 		Muestra las confirmaciones usando un formato alternativo. Posibles opciones son oneline, short, full, fuller y format (mediante el cual puedes especificar tu propio formato).
+        --name-only 	Muestra la lista de archivos afectados.
+        --shortstat 	Muestra solamente la línea de resumen de la opción --stat.
+        --name-status 	Muestra la lista de archivos afectados, indicando además si fueron añadidos, modificados o eliminados.
+        --abbrev-commit	Muestra solamente los primeros caracteres de la suma SHA-1, en vez de los 40 caracteres de que se compone.
+        --relative-date	Muestra la fecha en formato relativo (por ejemplo, “2 weeks ago” (“hace 2 semanas”)) en lugar del formato completo.
+
+Ver Log formateados:
+    - 'git log --pretty=format:"%h - %an, %ar : %s"'
+    - 'git log --pretty=format:"%h %s" --graph'
+    - OPCIONES PARA FORMATEAR SALIDA CON FORMAT:
+        - "%H Hash de la confirmación"
+        - "%h Hash de la confirmación abreviado"
+        - "%T Hash del árbol"
+        - "%t Hash del árbol abreviado"
+        - "%P Hashes de las confirmaciones padre"
+        - "%p Hashes de las confirmaciones padre abreviados"
+        - "%s Asunto"
+        - "%an Nombre del autor"
+        - "%ae Dirección de correo del autor"
+        - "%ad Fecha de autoría (el formato respeta la opción -–date)"
+        - "%ar Fecha de autoría, relativa"
+        - "%cn Nombre del confirmador"
+        - "%ce Dirección de correo del confirmador"
+        - "%cd Fecha de confirmación"
+        - "%cr Fecha de confirmación, relativa"
+
+Deshacer cambios de un archivo:
+    git checkout -- <filename>
+
+Ver los Git remoto:
+    - git remote
+    - nota: 
+        - "opcion -v para ver las urls de los nombres definidos"
+
+Adicionando Repositorios Remotos:
+    git remote add <remotename> <url>
+
+Renombrar Remotos:
+    git remote rename <old> <new>
+
+Traer toda la informacion de un repositorio:
+    - git fetch <remotename>
+    - nota: 
+        - "Este comando traer todo lo actualizado en el remoto para el local desde la ultima vez, sin combinar nada con el local"
+
+Traer y Combinar rama remota con una local:
+    git pull
+
+Enviar rama local al Remoto:
+    git push <remotename> <rama>
+
+Mostrar Etiquetas (release):
+    - git tag -l 'patron'
+    - nota:
+        "la opcion -l permite establecer un patron de busqueda para mostrar, si utilizamos el comando sin opcion, muestra todas las etiquetas(release) existentes."
+
+Crear una Etiqueta:
+    - git tag -a v1.4 -m 'my version 1.4'
+    - nota: 
+        - "la opcion -a para agregar la version de la etiqueta"
+        - "la opcion -m para establecer el mensaje"
+
+Enviar las etiquetas al remoto:
+    - git push <remotename> <etiqueta>
+    - git push <remotename> --tags
+    - nota: 
+        - "podemos enviar una etiqueta espesífica pasando el nombre como parametro"
+        - "la opcion --tags envia todas las etiquetas q no esten en el servidor"
+
+Notas generales:
+    Pasos para borrar el historial de un repositorio git/github:
+        - git checkout --orphan newBranch
+        - git add -A  # Add all files and commit them
+        - git commit
+        - git branch -D master  # Deletes the master branch
+        - git branch -m master  # Rename the current branch to master
+        - git push -f origin master  # Force push master branch to github
+        - git gc --aggressive --prune=all     # remove the old files
