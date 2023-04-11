@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: string
+  namespace: string             # Nombre del Namespace donde ser realizará el deploy. Si no se especifica, usa "default"
+  labels:                       # labels del Deployment
+    value-1: string
+    value-2: string
+spec:
+  replicas: int                 # Numero de replicas que tendrá la app/servicio
+  revisionHistoryLimit: int     # Número de ReplicaSets que desea conservar. (k rollout history)
+  selector:                     # Campo obligatorio que especifica un selector de etiqueta para los pods. No puede existir otro Pod que coincida con este selector.
+    matchLabels:                # Debe coincidir con el label en los metadato del Pod, si no, será rechazado por la API.
+      app: string
+  strategy:                     # Especifica la estrategia utilizada para reemplazar Pods antiguos por nuevos. Tipos "Recreate" o "RollingUpdate", está ultima es la predeterminada.
+    type: RollingUpdate         # Estratergia predeterminada de Kubernetes. (maxUnavailable: 25%; maxSurge: 25%)
+    rollingUpdate:
+      maxSurge: 1               # Especifica la cantidad máxima de Pods que se pueden crear sobre la cantidad de Pods deseada (Número de replicas).
+      maxUnavailable: 2         # Especifica la cantidad máxima de Pods que pueden estar indisponibles durante el proceso de actualización.(Número de Pod actualizados simultaneamente)
+    #type: Recreate             # Todos los pods existentes se eliminan antes de Crear los nuevos (No Recomendado). Esta estrategia no tiene opciones, solo type: Recreate.
+  template:                     # Esta es la difinicion del Pod
+    metadata:
+      labels:
+        app: string             # Para definir esta label se usa la misma definicion que en los metadatos del Deployment.
+    spec:                       # Especificaciones del Pod, el o los containers q se ejecutaran dentro de él.
+      containers:
+      - image: string           # Nombre de la imagen que se ejecutará en el container. (nombre_imagen:tag)
+        name: nginx             # Nombre del container
+        resources:
+          limits:               # Recursos máximos para el container
+            cpu: '0.5'
+            memory: 256Mi
+          requests:             # Recursos iniciales para el container
+            cpu: '0.3'
+            memory: 64Mi
