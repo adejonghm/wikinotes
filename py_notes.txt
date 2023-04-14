@@ -948,6 +948,9 @@ Crear ejecutables en Linux/Windows:
 	pyinstaller --onefile --windowed --clean ToDo-UI.py
 
 ------------------------------------------------------------------------------------------------------
+Folium: Biblioteca para crear mapas. (https://python-visualization.github.io/folium/)
+
+------------------------------------------------------------------------------------------------------
 Streamlit: Biblioteca para trabajar web pages. Interesante para incrustar(embebbed) Markdown en la web. (https://docs.streamlit.io/)
 	streamlit as st
 	st.write("text", *args) -> puede rederizar varios tipos de objetos. Para rederizar HTML se escribe el codigo html como texto y te usa el parametro unsafe_allow_html=True
@@ -967,3 +970,35 @@ Streamlit: Biblioteca para trabajar web pages. Interesante para incrustar(embebb
 		
 		with columna_2:
 			st.write()
+
+------------------------------------------------------------------------------------------------------
+FPDF: biblioteca para crear PDFs de una forma simple (https://pyfpdf.readthedocs.io/en/latest/index.html)
+
+Primeramente se crea un obj pdf usando la clase FPDF(). Parametros:
+	- orientation="Portrait | Landscape | P | L"
+	- format="A4 | A5 | Letter"
+	- unit="mm" -> Esta unidad de medida de usa para establecer coordenadas en el documento, ej: sangria.
+
+pdf.output() -> Se utiliza para salvar el archivo.
+pdf.add_page() -> Se utiliza para crear una pagina.
+pdf.set_text_color() -> Se utiliza para cambiar el color de font. El color se pasa en RGB.
+pdf.ln(int) -> Se utliza para quebrar lineas, como <br> en HTML
+pdf.line(x1, y1, x2, y2) -> Se utiliza para generar una linea horizontal. Se puede usar para crear una hoja rayada.
+pdf.set_auto_page_break() -> Se utiliza para evitar que se quiebren las paginas automaticamente
+	- auto= boolean
+	- margin=int
+
+pdf.set_font() -> Se utiliza para definir el tipo de fuente con su respectivo formato y tamaño.
+	- family="Courier | Helvetica or Arial | Times | Symbol | ZapfDingbats"
+	- style="B | I | U"
+	- size="" -> Expresado en puntos.
+
+pdf.cell() -> Se utiliza para crear celdas. Parametros:
+	- w=int -> Width. Se usa valor cero para definir tamaño 100%
+	- h=int -> Height
+	- txt="" -> Texto
+	- align="" -> Alinear
+	- border=int -> Definir bordes
+	- ln="" -> Quebrar lineas. Se usa valor cero para colcocar varias cell en la misma linea.
+
+Para agregar un numero de paginas fijas, llama a la funcion "add_page()" cuantas veces se desee crear una pagina.
