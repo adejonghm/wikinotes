@@ -32,4 +32,4 @@ Which best describes a taint?
 
 ### ConfigMaps
 
-Is an API object used to store non-confidential data in key-value pairs, and configuration for other objects to use. Pods can consume **ConfigMaps** as environment variables, command-line arguments, or as configuration files in a volume. A ConfigMap allows you to decouple environment-specific configuration from your container images without compiling these configurations inside the container images, so that your applications are easily portable.
+Is an API object used to store non-confidential data in key-value pairs for use by other objects. Pods can consume **ConfigMaps** as environment variables, command-line arguments, or as configuration files in a volume. A ConfigMap allows you to decouple environment-specific configuration from your container images without compiling these configurations inside the container images, so that your applications are easily portable.
