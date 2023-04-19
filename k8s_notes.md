@@ -1,5 +1,7 @@
 # Notes
 
+## Scaling Kubernetes Apps
+
 How many times will a liveness probe restart a container before giving up?
 
 > *Answer:* Kubernetes will restart a container in a pod after failureThreshold times. By default it is 3 times - so after 3 failed probes.
@@ -27,3 +29,7 @@ Which best describes vertical scaling?
 Which best describes a taint?
 
 > *Answer:* A description of a node that can be used for filtering and selection
+
+### ConfigMaps
+
+Is an API object used to store non-confidential data in key-value pairs, and configuration for other objects to use. Pods can consume **ConfigMaps** as environment variables, command-line arguments, or as configuration files in a volume. A ConfigMap allows you to decouple environment-specific configuration from your container images without compiling these configurations inside the container images, so that your applications are easily portable.
