@@ -97,5 +97,3 @@ kubectl cluster-info --context kind-<nombre_clúster>
 <https://www.linuxtips.io/course/kubernetesexpertweek>
 
 <https://play.instruqt.com/study-room>
-  
-usuario: gmail | password: el de linuxtips
