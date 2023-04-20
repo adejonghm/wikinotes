@@ -16,9 +16,9 @@ Is an API object used to store non-confidential data in key-value pairs for use 
 
 ### Readiness, Liveness and Startup
 
-- **Liveness Probe** indicates if the container is operating. If so, no action is taken. If not, the _kubelet_ kills and restarts the container.
+- **Liveness Probe** indicates if the container is operating. If so, no action is taken. If not, the *kubelet* kills and restarts the container.
 - **Readiness Probe** indicates whether the application running in the container is ready to accept requests. If so, **Services** matching the pod are allowed to send traffic to it. If not, the endpoints controller removes the pod from all matching Kubernetes **Services**.
-- **Startup Probe** indicates whether the application running in the container has started. If so, other **probes** start functioning. If not, the _kubelet_ kills and restarts the container.
+- **Startup Probe** indicates whether the application running in the container has started. If so, other **probes** start functioning. If not, the *kubelet* kills and restarts the container.
 
 How many times will a liveness probe restart a container before giving up?
 
@@ -26,7 +26,7 @@ How many times will a liveness probe restart a container before giving up?
 
 ### Taints and Tolerations
 
-They are a mechanism that allows you to ensure that pods are not placed on inappropriate nodes. **Taints** are added to nodes, while **Tolerations** are defined in the pod specification. When you **taint** a node, it will repel all the pods except those that have a **toleration** for that **taint**. **Tolerations** allow the _kubescheduler_ to schedule pods with matching **taints**. **Taints** and **Tolerations** work together to ensure that pods are not scheduled onto inappropriate nodes. One or more **taints** are applied to a node; this marks that the node should not accept any pods that do not tolerate the taints.
+They are a mechanism that allows you to ensure that pods are not placed on inappropriate nodes. **Taints** are added to nodes, while **Tolerations** are defined in the pod specification. When you **taint** a node, it will repel all the pods except those that have a **toleration** for that **taint**. **Tolerations** allow the *kubescheduler* to schedule pods with matching **taints**. **Taints** and **Tolerations** work together to ensure that pods are not scheduled onto inappropriate nodes. One or more **taints** are applied to a node; this marks that the node should not accept any pods that do not tolerate the taints.
 
 A **Taint** can produce three possible effects:
 
