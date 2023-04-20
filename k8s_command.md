@@ -35,7 +35,7 @@ kubectl run <nombre_pod> --image <imagen_docker> --port <>
 La opcion `-t -i` es para ??????
 Existe la opcion `--dry-run=<none | server | client>`. Si la estrategia es *client*, solo imprime el objeto que se enviaría, sin enviarlo. Si es *server*, envíe una solicitud del lado del servidor sin conservar el recurso. Si se usa la estrategia *client* combinado con la opcion `-o yaml` y comandos de Linux se puede salvar la configuración del *Pod* en un manifiesto YAML.
 
-## Aacceder a un Container específico dentro de un Pod
+## Acceder a un Container específico dentro de un Pod
 
 ```sh
 kubectl attach <nombre_pod> -c <nombre_container> -ti
@@ -53,12 +53,20 @@ kubectl get deployment <nombre_deployment> -o wide
 
 La opcion `-L <nombre_label>` lista los *Pods* que tienen esa label en su definicion. La opcion `--watch` ??
 
-## Descripcion Pod
+## Listar todos los Services
+
+```sh
+kubectl get services
+```
+
+## Descripcion de un recurso
 
 ```sh
 kubectl describe pods <name_pod>
 
 kubectl describe deployment <nombre_deployment>
+
+kubectl describe node <nombre_node>
 ```
 
 ## Eliminar un Pod
