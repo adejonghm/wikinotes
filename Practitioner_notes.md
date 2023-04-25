@@ -45,3 +45,35 @@ They are a collection of *one* or *more* physically separate *data centers*, eac
 ### Edge Locations
 
 An edge location is used to *cache content* for *fast delivery* to your users, using the **Content Delivery Network(CDN)**, thereby ensuring *low latency*. There are more edge locations than Regions and AZs.
+
+
+## Services
+
+### Compute
+
+#### Elastic Computer Cloud (EC2)
+
+**EC2** is the essential service for *managing virtual instances* (VMs). These instances can be provisioned by clicking a button, and a *preconfigured template* called **Amazon Machine Image (AMI)** can be used to launch the EC2 instances. In the *Free tier* plan, you get *750 compute hours* per month. You can use this service to deploy a database or a web application.
+
+##### Features
+
+- **Load Balancing:** automatically distributes your incoming application traffic across multiple EC2 instances. You have different types of balancing: *CLASSIC LOAD BALANCERS, APPLICATION LOAD BALANCERS, GATEWAY LOAD BALANCERS, NETWORK LOAD BALANCERS*.
+- **Auto Scaling (Horizontal Scaling/Scaling Out):** *adds* or *replaces* EC2 instances *automatically* across AZs, based on need and changing demand. This feature reduces the impact of system failures and improves the availability of your applications.
+
+*Note:* **Vertical Scaling/Scaling Up** is when you upgrade your existing EC2 Instance with more power (RAM and CPU) in an existing server.
+
+##### Connectivity
+
+You can have more methods to access an EC2 instance:
+
+- **AWS Management Console:** You're able to configure and manage your instances via a web browser.
+- **SSH:** Allows you to establish a secure connection to your instance from your local laptop. This is the most common way to connect to Linux EC2 instances.
+- **EC2 Instance Connect (EIC):** Allows you to use IAM policies to control SSH access to your instances, removing the need to manage SSH keys.
+- **AWS Systems Manager:** Allows you to manage your EC2 instances via a web browser or the AWS CLI.
+
+##### Pricing (*)
+- **On-Demand:**
+- **Spot:**
+- **Reserved instances:**
+- **Dedicated Hosts:**
+- **Saving Plans:**
