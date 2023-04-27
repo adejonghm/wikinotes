@@ -74,27 +74,27 @@ You can have more methods to access an EC2 instance:
 ##### Pricing (*)
 - **On-Demand:** A fixed price in which you are billed *down to the second* based on the instance type. You can increase or decrease your compute capacity depending on the demands of your application and pay only for what you use.
 When you use:
-  - You care about low cost and flexibility of Amazon EC2 without any upfront payment or long-term commitment.
-  - Applications with short-term, spiky, or unpredictable workloads that *cannot* be interrupted.
-  - Applications being developed or tested on Amazon EC2 for the first time.
-  - Your workloads will *not* run longer than a year.
+	- You care about low cost and flexibility of Amazon EC2 without any upfront payment or long-term commitment.
+	- Applications with short-term, spiky, or unpredictable workloads that *cannot* be interrupted.
+	- Applications being developed or tested on Amazon EC2 for the first time.
+	- Your workloads will *not* run longer than a year.
 
-- **Spot (Cheapest Option):** Allows you to take advantage of unused EC2 capacity in the AWS cloud. Your request is attended to only when there is available capacity for your demand. You can save up to 90% compared to On-Demand pricing.
+- **Spot (Cheapest Option):** Allows you to take advantage of *unused* EC2 capacity in the AWS cloud. Your request is attended to *only* when there is available capacity for your demand. You can *save up to 90%* compared to On-Demand pricing.
 When you use:
-  - Your workloads can be interrupted.
-  - You are not concerned about the start or stop time of your app.
+	- Your workloads *can* be interrupted.
+	- You are not concerned about the *start* or *stop* time of your app.
 
-- **Reserved instances:** Allow you to commit to a specific Instance type in a particular region for 1 or 3 years. You can save up to 75% off On-Demand prices.
+- **Reserved instances:** Allow you to commit to a specific Instance type in a particular region for 1 or 3 years. You can *save up to 75%* off On-Demand prices.
 When you use:
-	- Your app has steady state usage, and you can commit to 1 or 3 years.
-	- You can pay money upfront in order to receive discounts on On-Demand prices.
+	- Your app has *steady state usage*, and you can commit to 1 or 3 years.
+	- You can pay money *upfront* in order to receive discounts on On-Demand prices.
 
-- **Dedicated Hosts:** Allow you to pay for a physical server that is fully dedicated to running your instances, meaning the server isn't share with others. You can save up to 70% off On-Demand prices.
+- **Dedicated Hosts:** Allow you to pay for a physical server that is fully dedicated to running your instances, meaning the server isn't share with others. You can *save up to 70%* off On-Demand prices.
 When you use:
-	- You want to bring your server-bound license from vendors like Microsoft or others, helping to cut costs.
+	- You want to *bring your* server-bound *license* from vendors like Microsoft or others, helping to cut costs.
 	- You have regulatory or corporate compliance requirements around tenancy model.
 
-- **Saving Plans:** Allow you to commit to compute usage (measured per hour) for 1 or 3 years. You can save up to 72% off On-Demand prices, but this doesn't provide a capacity reservation.
+- **Saving Plans:** Allow you to commit to compute usage (measured per hour) for 1 or 3 years. You can *save up to 72%* off On-Demand prices, but this doesn't provide a capacity reservation.
 When you use:
-	- You want to lower bill across multiple compute services.
-	- You want the flexibility to change compute services, instances type, Operating Systems or Regions.
+	- You want to *lower bill* across multiple compute services.
+	- You want the *flexibility* to change compute services, instances type, Operating Systems or Regions.
