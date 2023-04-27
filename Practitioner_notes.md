@@ -36,16 +36,15 @@ Cloud computing is the *on-demand delivery* of compute power, database, storage,
 
 ### Regions
 
-A *Region* is a physical location in the world that contains 2 or more Availability Zones. Each region is isolated and fully independent, so if one of them is affected, the others are not. Regions are grouped in geographically isolated locations around the globe, called *Geographical Locations*, On the other hand, most of the resources are tied to a specific Region, and you should set up resources in Regions closest to your users.
+A **Region** is a physical location in the world that contains 2 or more Availability Zones. Each region is isolated and fully independent, so if one of them is affected, the others are not. Regions are grouped in geographically isolated locations around the globe, called **Geographical Locations**, On the other hand, most of the resources are tied to a specific Region, and you should set up resources in Regions closest to your users.
 
 ### Availability Zones(AZs)
 
-They are a collection of *one* or *more* physically separate *data centers*, each with redundant power, networking, and connectivity housed in different facilities. AZs are connected through *low latency* links, are *fault-tolerant*, and allow *high availability*. An AZ is associated with a single Region.
+They are a collection of **one** or **more** physically separate **data centers**, each with redundant power, networking, and connectivity housed in different facilities. AZs are connected through **low latency** links, are **fault-tolerant**, and allow *high availability*. An AZ is associated with a single Region.
 
 ### Edge Locations
 
-An edge location is used to *cache content* for *fast delivery* to your users, using the **Content Delivery Network(CDN)**, thereby ensuring *low latency*. There are more edge locations than Regions and AZs.
-
+An edge location is used to **cache content** for **fast delivery** to your users, using the **Content Delivery Network(CDN)**, thereby ensuring **low latency**. There are more edge locations than Regions and AZs.
 
 ## Services
 
@@ -53,12 +52,12 @@ An edge location is used to *cache content* for *fast delivery* to your users, u
 
 #### Elastic Computer Cloud (EC2)
 
-**EC2** is the essential service for *managing virtual instances* (VMs). These instances can be provisioned by clicking a button, and a *preconfigured template* called **Amazon Machine Image (AMI)** can be used to launch the EC2 instances. In the *Free tier* plan, you get *750 compute hours* per month. You can use this service to deploy a database or a web application.
+**EC2** is the essential service for **managing virtual instances** (VMs). These instances can be provisioned by clicking a button, and a **preconfigured template** called **Amazon Machine Image (AMI)** can be used to launch the EC2 instances. In the **Free tier** plan, you get **750 compute hours** per month. You can use this service to deploy a database or a web application.
 
 ##### Features
 
 - **Load Balancing:** automatically distributes your incoming application traffic across multiple EC2 instances. You have different types of balancing: *CLASSIC LOAD BALANCERS, APPLICATION LOAD BALANCERS, GATEWAY LOAD BALANCERS, NETWORK LOAD BALANCERS*.
-- **Auto Scaling (Horizontal Scaling/Scaling Out):** *adds* or *replaces* EC2 instances *automatically* across AZs, based on need and changing demand. This feature reduces the impact of system failures and improves the availability of your applications.
+- **Auto Scaling (Horizontal Scaling/Scaling Out):** **Add** or **replace** EC2 instances **automatically** across AZs, based on need and changing demand. This feature reduces the impact of system failures and improves the availability of your applications.
 
 *Note:* **Vertical Scaling/Scaling Up** is when you upgrade your existing EC2 Instance with more power (RAM and CPU) in an existing server.
 
@@ -72,29 +71,30 @@ You can have more methods to access an EC2 instance:
 - **AWS Systems Manager:** Allows you to manage your EC2 instances via a web browser or the AWS CLI.
 
 ##### Pricing (*)
-- **On-Demand:** A fixed price in which you are billed *down to the second* based on the instance type. You can increase or decrease your compute capacity depending on the demands of your application and pay only for what you use.
-When you use:
-	- You care about low cost and flexibility of Amazon EC2 without any upfront payment or long-term commitment.
-	- Applications with short-term, spiky, or unpredictable workloads that *cannot* be interrupted.
-	- Applications being developed or tested on Amazon EC2 for the first time.
-	- Your workloads will *not* run longer than a year.
 
-- **Spot (Cheapest Option):** Allows you to take advantage of *unused* EC2 capacity in the AWS cloud. Your request is attended to *only* when there is available capacity for your demand. You can *save up to 90%* compared to On-Demand pricing.
+- **On-Demand:** A fixed price in which you are billed **down to the second** based on the instance type. You can increase or decrease your compute capacity depending on the demands of your application and pay only for what you use.
 When you use:
-	- Your workloads *can* be interrupted.
-	- You are not concerned about the *start* or *stop* time of your app.
+  - You care about low cost and flexibility of Amazon EC2 without any upfront payment or long-term commitment.
+  - Applications with short-term, spiky, or unpredictable workloads that **cannot** be interrupted.
+  - Applications being developed or tested on Amazon EC2 for the first time.
+  - Your workloads will **not** run longer than a year.
 
-- **Reserved instances:** Allow you to commit to a specific Instance type in a particular region for 1 or 3 years. You can *save up to 75%* off On-Demand prices.
+- **Spot (Cheapest Option):** Allows you to take advantage of **unused** EC2 capacity in the AWS cloud. Your request is attended to **only** when there is available capacity for your demand. You can **save up to 90%** compared to On-Demand pricing.
 When you use:
-	- Your app has *steady state usage*, and you can commit to 1 or 3 years.
-	- You can pay money *upfront* in order to receive discounts on On-Demand prices.
+  - Your workloads **can** be interrupted.
+  - You are not concerned about the **start** or **stop** time of your app.
 
-- **Dedicated Hosts:** Allow you to pay for a physical server that is fully dedicated to running your instances, meaning the server isn't share with others. You can *save up to 70%* off On-Demand prices.
+- **Reserved instances:** Allow you to commit to a specific Instance type in a particular region for 1 or 3 years. You can **save up to 75%** off On-Demand prices.
 When you use:
-	- You want to *bring your* server-bound *license* from vendors like Microsoft or others, helping to cut costs.
-	- You have regulatory or corporate compliance requirements around tenancy model.
+  - Your app has **steady state usage**, and you can commit to 1 or 3 years.
+  - You can pay money **upfront** in order to receive discounts on On-Demand prices.
 
-- **Saving Plans:** Allow you to commit to compute usage (measured per hour) for 1 or 3 years. You can *save up to 72%* off On-Demand prices, but this doesn't provide a capacity reservation.
+- **Dedicated Hosts:** Allow you to pay for a physical server that is fully dedicated to running your instances, meaning the server isn't share with others. You can **save up to 70%** off On-Demand prices.
 When you use:
-	- You want to *lower bill* across multiple compute services.
-	- You want the *flexibility* to change compute services, instances type, Operating Systems or Regions.
+- You want to **bring your** server-bound **license** from vendors like Microsoft or others, helping to cut costs.
+- You have regulatory or corporate compliance requirements around tenancy model.
+
+- **Saving Plans:** Allow you to commit to compute usage (measured per hour) for 1 or 3 years. You can **save up to 72%** off On-Demand prices, but this doesn't provide a capacity reservation.
+When you use:
+- You want to **lower bill** across multiple compute services.
+- You want the **flexibility** to change compute services, instances type, Operating Systems or Regions.
