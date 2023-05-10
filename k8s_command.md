@@ -14,6 +14,8 @@ kubectl create ??????
 kubectl apply -f pod-file.yaml
 ```
 
+<span style="color:blue">Some **Blue** text</span>
+
 Existe una diferencia entre las dos opciones si se usa `create` crea el *Pod* si no existe. Si se usa la opcion `apply` crea el *Pod* si no existe, pero si exite, actualiza el *Pod* existente con las nuevas configuraciones encontradas en el manifiesto YAML. Existen algunas configuraciones que no son posible actualizarlas como es el caso de adicionar o remover un *container* dentro del *Pod*, en ese caso hay que eliminar el *Pod* y crearlo nuevamente.
 
 ## Analizar un Pod
