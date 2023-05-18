@@ -67,7 +67,7 @@ Lambda functions have a timeout of 15 minutes, which allows you to optimize code
 - **Always free:** The free usage tier includes **1 million** free requests each month.
 
 
-## Other Compute Services
+## Additional Compute Services
 
 - **Fargate:** is the *serverless* compute engine for containers. It is autoscaling.
 - **Lightsail:** is a *compute service* that allows you to quickly launch all the resources you need for small projects. You can deploy preconfigured applications at the click of a button, including a virtual machine, SSD-based storage, data transfer, DNS management, and a static IP. This serviceProvides a low monthly fee, as low as $3.50.
