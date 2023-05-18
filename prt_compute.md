@@ -66,4 +66,10 @@ Lambda functions have a timeout of 15 minutes, which allows you to optimize code
 - **Request count:** A request is **counted** each time it **starts execution**. Test invokes in the console count as well.
 - **Always free:** The free usage tier includes **1 million** free requests each month.
 
-## Other Services
+
+## Other Compute Services
+
+- **Fargate:** is the *serverless* compute engine for containers. It is autoscaling.
+- **Lightsail:** is a *compute service* that allows you to quickly launch all the resources you need for small projects. You can deploy preconfigured applications at the click of a button, including a virtual machine, SSD-based storage, data transfer, DNS management, and a static IP. This serviceProvides a low monthly fee, as low as $3.50.
+- **Outposts:** allows you to run cloud services in your internal data center supporting workloads that need to remain on-premises due to latency or data sovereignty needs. This service is used for a *hybrid deployment model*.
+- **Batch:** is a *compute service* that allows you to process large workloads, running hundreds and thousands of smaller batch processing jobs. This service provisions instances dynamically based on volume.
