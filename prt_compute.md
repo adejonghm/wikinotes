@@ -1,4 +1,4 @@
-# Services (Compute)
+# Compute Services
 
 ## Elastic Computer Cloud (EC2)
 
@@ -65,7 +65,6 @@ Lambda functions have a timeout of 15 minutes, which allows you to optimize code
 - **Compute time:** Save costs by **paying** only for computing **time used** — there is no charge if your code is not running.
 - **Request count:** A request is **counted** each time it **starts execution**. Test invokes in the console count as well.
 - **Always free:** The free usage tier includes **1 million** free requests each month.
-
 
 ## Additional Compute Services
 
