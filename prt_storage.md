@@ -19,3 +19,13 @@ Regarding data accessibility, there are two significant aspects **Durability** a
 |**Durability:** 99.999999999% <br> **Availability:** 99.99%|**Durability:** 99.999999999% <br> **Availability:** 99.9%|**Durability:** 99.999999999% <br> **Availability:** 99.9%|**Durability:** 99.999999999% <br> **Availability:** 99.5%|**Durability:** 99.999999999%|**Durability:** 99.999999999%| |
 
 ## Additional Storage Services
+
+- **Instance Store:** is a *local* storage that is *physically* attached to the host computer and cannot be removed (basically, the HDD or a flash drive that you select when creating a EC2). They have *low latency* and are *faster* with higher I/O speeds, but they are *temporary*, as data is lost when the EC2 Instance stops. It is Recommended for temporary storage, and data replicated across multiple instances.
+  
+- **Elastic Block Storage (*EBS*):** is a storage that can be *attached* to the EC2 Instances. The *data persist* when the instances are not running or even when they are deleted. This type of storage is tied to *one* AZ and can only be attached to *one* Instance in the *same* AZ. It is recommended for quickly accessible data, running a db on an Instance, and long-term data storage.
+
+- **Elastic Files system (*EFS*):** is a *serverless* network file system for sharing files. They are only supports Linux file system and are accessible *across different AZs* in the *same Region*. This type of storage is more *expensive* than EBS, so it is recommended when business-critical apps *need shared directories* and when you are doing a *lift-and-shift migration* on an existing enterprise app.
+
+- **Storage Gateway:** is a hybrid storage service that can you use to store data in the cloud and keep some data locally with low latency. With this, you can connect on-premises and cloud data, that is useful to moving backups to the cloud, reduce costs by picking and choosing what data you host in the cloud, and keeping latency low by deciding what data you want to access directly in you local network.
+
+- **AWS Backup:** helps to you manage data backups across multiple AWS services. This service is used to schedule, execute and access backed up data across many AWS services EBS, EFS, EC2 Instance Store and other. In it, you create a backup plan when you determine what data you're backing up, how frequently you could like to back it up, and how long you'd like to retain that data.
