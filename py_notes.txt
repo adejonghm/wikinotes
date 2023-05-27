@@ -137,18 +137,18 @@ Trabajo con Strings
 	funcion center(arg1, arg2) -> centra el texto al imprimirlo, arg1 determina la cantidad que desea centrar y arg2(que es opcional) es para colocar el caracter que desea imprimir, si no coloca ninguno usa espacios.
 	string.isalpha() -> devuelve true si solo son letras
 	string.isalnum() -> devuelve true si solo son letras y numeros
-  string.istitle() -> devuelve true si en la cadena cada palabra separada por espacios comienza con mayuscula, es decir Capitalize.
-  string.isdigit() -> devuelve true si todos son numeros
-  string.islower() -> devuelve true si todo esta en minuscula
-  string.isupper() -> devuelve true si todo esta en mayuscula
-  string.startswith('arg') -> devuelve true si la cadena comienza con el 'arg'. Esta funcion es Case-Sensitive.
-  string.endswith('arg') -> devuelve true si la cadena termina con el 'arg'. Esta funcion es Case-Sensitive.
-  string.upper() -> convierte toda la cadena en mayuscula
-  string.lower() -> convierte toda la cadena en minuscula
-  string.capitalize() -> convierte en mayuscula solo la primera letra de la cadena
-  string.title() -> convierte en mayuscula la primera letra de cada palabra en la cadena
-  string.swapcase() -> intercambia las letras mayusculas por minusculas y viceversa
-  string.strip() -> elimina los espacios en blanco al inicio y al final de la cadena
+	string.istitle() -> devuelve true si en la cadena cada palabra separada por espacios comienza con mayuscula, es decir Capitalize.
+	string.isdigit() -> devuelve true si todos son numeros
+	string.islower() -> devuelve true si todo esta en minuscula
+	string.isupper() -> devuelve true si todo esta en mayuscula
+	string.startswith('arg') -> devuelve true si la cadena comienza con el 'arg'. Esta funcion es Case-Sensitive.
+	string.endswith('arg') -> devuelve true si la cadena termina con el 'arg'. Esta funcion es Case-Sensitive.
+	string.upper() -> convierte toda la cadena en mayuscula
+	string.lower() -> convierte toda la cadena en minuscula
+	string.capitalize() -> convierte en mayuscula solo la primera letra de la cadena
+	string.title() -> convierte en mayuscula la primera letra de cada palabra en la cadena
+	string.swapcase() -> intercambia las letras mayusculas por minusculas y viceversa
+	string.strip() -> elimina los espacios en blanco al inicio y al final de la cadena
 	string.count("arg") -> cuenta la cantidad de ocurrencias de "arg" que existen en la cadena.
 	string.replace("caracter existente","caracter para sustituir") -> remplaza un pedazo de string por otro.
 	string.join(arg) -> une, fusiona el arg con la cadena anterior
@@ -395,7 +395,9 @@ Ficheross con python nativo:
 
 	- pathlib: Lbreria q sirve para obtener rutas del sistema, ejemplo:
 		pathlib.Path().absolute() -> devuelve la ruta absoluta de donde estamos, pero como tipo de dato pathlib. Hay q convertirla a str si queremos hacerla legible.
-		os.path.abspath(path) -> devuelve la ruta completa de la ruta pasada por parametros, si colocamos "./" devuevle la ruta absoluta de la carpeta donde estamos.
+		pathlib.Path('').stem -> Devuelve el nombre del fichero (sin extension) en la ruta pasada por parametro.
+		
+	os.path.abspath(path) -> devuelve la ruta completa de la ruta pasada por parametros, si colocamos "./" devuevle la ruta absoluta de la carpeta donde estamos.
 	
 	- shutil: módulo que ofrece una serie de operaciones de alto nivel con file.
 	copiar archivos
@@ -588,44 +590,47 @@ Funcion textwrap:
 para leer ficheros se coloca pandas.read_[tipo de fichero]('ruta')
 ejemplo:
     pandas.read_csv('ruta')
-    pandas.read_excel('ruta', sheet_name=0, index_col=None, header)
+    pandas.read_excel('ruta', str_sheet_name, index_col=None, header)
 
 la funcion info() nos brinda la informacion del fichero leido
 ejemplo:
-    fichero = pandas.read_csv('ruta')
-    print(fichero.info())
+    dataframe = pandas.read_csv('ruta')
+    print(dataframe.info())
 
 La funcion head() devuelve las primeras n lineas del fichero leido (Por default devuelve las primeras 5)
 ejemplo:
-    fichero.head()
+    dataframe.head()
 
 La funcion replace(to_replace, value) reemplaza el primer parametro por el segundo
 ejemplo:
-    fichero.replace('a', 'bb')
+    dataframe.replace('a', 'bb')
 
 La funcion describe() genera una estadistica del conjunto de datos
 ejemplo:
-    fichero.describe()
+    dataframe.describe()
 
 La funcion count devuelve la cantidad de registros por columnas
 ejemplo:
-    fichero.count()
+    dataframe.count()
 
 La funcion columns devuelve los nombres de las columnas del fichero en un arreglo
 ejmeplo:
-	fichero.columns
+	dataframe.columns
 
 La funcion tail() devuelve las ultimas n lineas del fichero leido (Por default devuelve las ultimas 5)
-	fichero.tail()
+	dataframe.tail()
 
 La funcion info() devuelve una informacion completa del Dataframe.
-	fichero.info()
+	dataframe.info()
 
 La funcion keys() devuelve el nombre de las columnas del Dataframe, pero si en la funcion read_excel() pasamos sheet_name=None como parametro, devuelve el nombre de las pestañas.
-	fichero.keys()
+	dataframe.keys()
 
 La funcion iterrows() permite iterar por las filas del Dataframe dentro de un ciclo.
 	for index, item in Dataframe.iterrows()
+
+La funcion sum() devuelve la suma de una columna determinada
+	dataframe['column_name'].sum()
 
 ------------------------------------------------------------------------------------------------------
 #### NumPy ####
@@ -994,11 +999,20 @@ pdf.set_font() -> Se utiliza para definir el tipo de fuente con su respectivo fo
 	- size="" -> Expresado en puntos.
 
 pdf.cell() -> Se utiliza para crear celdas. Parametros:
-	- w=int -> Width. Se usa valor cero para definir tamaño 100%
+	- w=int -> Width. Se usa valor 0 para definir tamaño 100%
 	- h=int -> Height
 	- txt="" -> Texto
 	- align="" -> Alinear
 	- border=int -> Definir bordes
 	- ln="" -> Quebrar lineas. Se usa valor cero para colcocar varias cell en la misma linea.
+
+pdf.multi_cell() -> Se utiliza para agregar textos multilineas en una celda.
+	- w=int -> Width. Se usa valor 0 para definir tamaño 100%
+	- h=int -> Height -> En este caso puede ayudar en la definicion del "espacio entre lineas" de un parrafo.
+	- txt="" -> Texto
+
+pdf.image() ->
+	- path="" -> Ruta de imagen
+	- w=int -> Tamaño de imagen
 
 Para agregar un numero de paginas fijas, llama a la funcion "add_page()" cuantas veces se desee crear una pagina.
