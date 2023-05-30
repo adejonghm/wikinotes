@@ -18,32 +18,20 @@ If I'm in Region A, I won't see EC2s running in Region B.
 
 ### Types
 
-#### General purpose instances
+- **General purpose instances:** Provide a balance of compute, memory, and networking resources. You can use them for a variety of workloads, such as:
 
-Provide a balance of compute, memory, and networking resources. You can use them for a variety of workloads, such as:
+  - application servers
+  - gaming servers
+  - backend servers for enterprise applications
+  - small and medium databases
 
-- application servers
-- gaming servers
-- backend servers for enterprise applications
-- small and medium databases
+- **Compute optimized instances:** These are ideal for compute-bound applications that benefit from high-performance processors. Like general purpose instances, you can use compute optimized instances for workloads such as web, application, and gaming servers. However, the difference is compute optimized applications are ideal for high-performance web servers, compute-intensive applications servers, and dedicated gaming servers. You can also use compute optimized instances for batch processing workloads that require processing many transactions in a single group.
 
-#### Compute optimized instances
+- **Memory optimized instances:** These are designed to deliver fast performance for workloads that process large datasets in memory. Suppose that you have a workload that requires large amounts of data to be preloaded before running an application. This scenario might be a high-performance database or a workload that involves performing real-time processing of a large amount of unstructured data. In these types of use cases, consider using a memory optimized instance. Memory optimized instances enable you to run workloads with high memory needs and receive great performance.
 
-These are ideal for compute-bound applications that benefit from high-performance processors. Like general purpose instances, you can use compute optimized instances for workloads such as web, application, and gaming servers. However, the difference is compute optimized applications are ideal for high-performance web servers, compute-intensive applications servers, and dedicated gaming servers. You can also use compute optimized instances for batch processing workloads that require processing many transactions in a single group.
+- **Accelerated computing instances:** These use hardware accelerators, or coprocessors, to perform some functions more efficiently than is possible in software running on CPUs. Examples of these functions include floating-point number calculations, graphics processing, and data pattern matching. Accelerated computing instances are ideal for workloads such as graphics applications, game streaming, and application streaming.
 
-#### Memory optimized instances
-
-These are designed to deliver fast performance for workloads that process large datasets in memory.
-
-Suppose that you have a workload that requires large amounts of data to be preloaded before running an application. This scenario might be a high-performance database or a workload that involves performing real-time processing of a large amount of unstructured data. In these types of use cases, consider using a memory optimized instance. Memory optimized instances enable you to run workloads with high memory needs and receive great performance.
-
-#### Accelerated computing instances
-
-These use hardware accelerators, or coprocessors, to perform some functions more efficiently than is possible in software running on CPUs. Examples of these functions include floating-point number calculations, graphics processing, and data pattern matching. Accelerated computing instances are ideal for workloads such as graphics applications, game streaming, and application streaming.
-
-#### Storage optimized instances
-
-These are designed for workloads that require high, sequential read and write access to large datasets on local storage. Examples of workloads suitable for storage optimized instances include distributed file systems, data warehousing applications, and high-frequency online transaction processing (OLTP) systems. Storage optimized instances are designed to deliver tens of thousands of low-latency, random IOPS to applications.
+- **Storage optimized instances:** These are designed for workloads that require high, sequential read and write access to large datasets on local storage. Examples of workloads suitable for storage optimized instances include distributed file systems, data warehousing applications, and high-frequency online transaction processing (OLTP) systems. Storage optimized instances are designed to deliver tens of thousands of low-latency, random IOPS to applications.
 
 ### Connectivity
 
