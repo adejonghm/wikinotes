@@ -9,13 +9,6 @@ In the EC2 web dashboard, you will only be able to see the EC2s that are running
 Example:
 If I'm in Region A, I won't see EC2s running in Region B.
 
-### Features
-
-- **Load Balancing:** automatically distributes your incoming application traffic across multiple EC2 instances. You have different types of balancing: *CLASSIC LOAD BALANCERS, APPLICATION LOAD BALANCERS, GATEWAY LOAD BALANCERS, NETWORK LOAD BALANCERS*.
-- **Auto Scaling (Horizontal Scaling/Scaling Out):** **Add** or **replace** EC2 instances **automatically** across AZs, based on need and changing demand. This feature reduces the impact of system failures and improves the availability of your applications.
-
-*Note:* **Vertical Scaling/Scaling Up** is when you upgrade your existing EC2 Instance with more power (RAM and CPU) in an existing server.
-
 ### Types
 
 - **General purpose instances:** Provide a balance of compute, memory, and networking resources. You can use them for a variety of workloads, such as:
@@ -85,6 +78,21 @@ Lambda functions have a timeout of 15 minutes, which allows you to optimize code
 
 ## Additional Compute Services
 
+### Services that you can use with EC2
+
+- **Elastic Load Balancing (ELB):** It is the service that automatically distributes your incoming application traffic across multiple EC2 instances. This acts as a single entry point for your **Auto Scaling Group** distributing the workload across your instances so that no one has to carry the bulk of it. You have different types of balancing: *CLASSIC LOAD BALANCERS, APPLICATION LOAD BALANCERS, GATEWAY LOAD BALANCERS, NETWORK LOAD BALANCERS*.
+
+- **Auto Scaling Group (Horizontal Scaling/Scaling Out): Add** or **replace** EC2 instances **automatically** across AZs, based on need and changing demand. This feature reduces the impact of system failures and improves the availability of your applications.
+When you create an **Auto Scaling Group**, you can set the **minimum number** of Amazon EC2 instances. This is the number of EC2 instances that launch immediately after you have created the group. Next, you can set the **desired capacity**, the number of instances your application will use by default. When you don't define the **desired capacity** in your Auto Scaling Group, the **minimum number** is used as the **desired capacity**. Finally, you can set the **maximum capacity**, which is the maximum number of EC2 Instances that will run when your Auto Scaling Group reaches the critical moment. In this case, you only pay for the instances when you use them, that is, when the instances are not running, you don't pay for them.
+
+*Note:* **Vertical Scaling/Scaling Up** is when you upgrade your existing EC2 Instance with more power (RAM and CPU) in an existing server.
+
+### Other Services
+
+- **Simple Queue Service (SQS):** Allows to send, store, and receive messages between software components at any volume, without losing messages or requiring other services to be available.
+- **Simple Notification Service (SNS):** Allows you to *send emails* and *text messages* from your applications. You can use it to send notifications about your infrastructure or other incident.
+- **Elastic Container Service (ECS):**
+- **Elastic Kubernetes Service (EKS):**
 - **Fargate:** is the *serverless* compute engine for containers. It is autoscaling.
 - **Lightsail:** is a *compute service* that allows you to quickly launch all the resources you need for small projects. You can deploy preconfigured applications at the click of a button, including a virtual machine, SSD-based storage, data transfer, DNS management, and a static IP. This serviceProvides a low monthly fee, as low as $3.50.
 - **Outposts:** allows you to run cloud services in your internal data center supporting workloads that need to remain on-premises due to latency or data sovereignty needs. This service is used for a *hybrid deployment model*.
