@@ -14,18 +14,20 @@ Amazon RDS is compatible with other engines like **PostgreSQL**, **MySQL**, **Ma
 
 ## Nonrelational Database (NoSQL DB)
 
-### DynamoDB
+### Amazon DynamoDB
 
 A **serverless** database service which means you don't have to provision, patch, or manage servers, this stuff is managed by AWS. DynamoDB automatically scales to massive workloads while maintaining consistent performance, making it a suitable choice for use cases that require high performance while scaling.
 
-### DocumentDB
+### Amazon DocumentDB
 
 Is a fast, reliable, and fully managed (**serverless**) database service, that makes it easy to set up, operate, and scale MongoDB-compatible databases in the AWS.
 
-## Additional DB services
+## Additional Database services
 
 - **Amazon ElastiCache:** is a service that adds caching layers on top of your databases to help improve read times for regular requests, ensuring high performance and low latency. It supports **Redis** and **Memcached**, and data can be lost because it is an **in-memory** database.
 
 - **Amazon Neptune:** is a fully managed (**serverless**) graph database service that support highly connected datasets. You can use **Neptune** to build and run applications that work with highly connected datasets, such as **recommendation engines**, **fraud detection**, and **knowledge graphs**.
 
 - **Amazon DynamoDB Accelerator (DAX)** is an in-memory cache for DynamoDB. It helps improve response times from single-digit milliseconds to microseconds.
+
+- **Amazon Database Migration Service (DMS):** enables you to migrate relational databases, nonrelational databases, and other types of data stores. You can migrate your data into the AWS Cloud or between combinations of cloud and on-premises setups. **DMS** provides virtually no downtime, which means your source database remains operational and provides continuous data replication.
