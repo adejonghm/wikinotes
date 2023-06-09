@@ -15,3 +15,17 @@
 - **Amazon Data Pipeline:** Is a web service that helps you move data between Compute and Storage services running either on AWS or On-premises. You can move data at specific **intervals** or based on **conditions**, and it is possible to send **notifications** on success or failure.
 
 - **Amazon QuickSight:**  is a cloud-scale business intelligence (BI) service (**serverless**) that helps you to visualize your data by building interactive dashboards, and you can embed these dashboards in your applications.
+
+## Machine Learning
+
+- **Rekognition:** Is a service that allows you to automate your image and video analysis. It is possible to identify custom labels in images and videos and perform face and text detection in images and videos.
+
+- **Comprehend:** Is a natural-language processing (NLP) service that finds insights and relationships in texts or documents. Comprehend can be used to review social media posts and find some words that reveal customer sentiment.
+
+- **Polly:** It is a service that converts text to speech with natural-sounding human speech. It has multiple voices in many languages, and you can create a custom voice. These audios can be downloaded or replayed in MP3 format.
+
+- **SageMaker:** Is a service that helps you build, train and deploy machine learning models quickly. SageMaker gives every data scientist the ability to prepare data for models and use deep-learning **AMIs** to create EC2 Instances.
+
+- **Translate:** Is a service that provides real-time and batch language translation. It supports several popular languages and translates many content formats.
+
+- **Lex:** Is a service that allows you to build conversational interfaces like chatbots. It recognizes speech and understands languages, and you can create highly engaging chatbots. This service is used to Power Alexa.
